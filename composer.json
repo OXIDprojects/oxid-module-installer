@@ -1,6 +1,6 @@
 {
   "name": "oxid-community/moduleinstaller",
-  "description": "Install Composer Packages via GUI",
+  "description": "Install Composer Packages via GUI.",
   "type": "oxideshop-module",
   "minimum-stability": "stable",
   "keywords": [
