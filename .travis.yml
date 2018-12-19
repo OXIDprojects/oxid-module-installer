@@ -1,5 +1,5 @@
 language: php
-
+dist: xenial
 php:
   - "7.1"
   - "7.2"
@@ -10,6 +10,7 @@ before_install:
   - mysql -e 'CREATE DATABASE oxid;'
 
 before_script:
+  - phpenv config-rm xdebug.ini
   - export BRANCH=$(if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then echo $TRAVIS_BRANCH; else echo $TRAVIS_PULL_REQUEST_BRANCH; fi)
   - sh ./.travis.before_script.sh
 
