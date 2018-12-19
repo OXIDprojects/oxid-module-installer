@@ -1,18 +1,15 @@
 language: php
-
+dist: xenial
 php:
-  - "7.1"
-
-env: TRAVIS_ERROR_LEVEL=22519
+  - "7.2"
 
 services: mysql
 
 before_install:
-  - echo 'Europe/Berlin' | sudo tee /etc/timezone
-  - sudo dpkg-reconfigure --frontend noninteractive tzdata
   - mysql -e 'CREATE DATABASE oxid;'
 
 before_script:
+  - phpenv config-rm xdebug.ini
   - export BRANCH=$(if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then echo $TRAVIS_BRANCH; else echo $TRAVIS_PULL_REQUEST_BRANCH; fi)
   - sh ./.travis.before_script.sh
 
