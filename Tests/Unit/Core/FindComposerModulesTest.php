@@ -1,5 +1,5 @@
 <?php
-namespace OxidCommunity\ModuleInstaller\Tests;
+namespace OxidCommunity\ModuleInstaller\Tests\Unit\Core;
 
 
 use OxidCommunity\ModuleInstaller\OxidComposerModulesService;
