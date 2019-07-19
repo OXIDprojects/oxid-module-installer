@@ -16,7 +16,7 @@
   "require": {
     "php": ">=7.0",
     "oxid-esales/oxideshop-composer-plugin" : "^2",
-    "sioweb/oxid-kernel": "^0.43",
+    "sioweb/oxid-kernel": "^0.4",
     "composer/composer" : "^1.6"
   },
   "autoload": {
