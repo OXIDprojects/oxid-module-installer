@@ -1,0 +1,29 @@
+{
+  "name": "oxid-community/moduleinstaller",
+  "description": "",
+  "type": "oxideshop-module",
+  "keywords": [
+    "oxid",
+    "modules",
+    "installer"
+  ],
+  "license": [
+    "GPL-3.0"
+  ],
+  "extra": {
+    "oxid-kernel-plugin": "OxidCommunity\\Moduleinstaller\\OxidCommunityModuleinstallerBundle"
+  },
+  "require": {
+    "php": ">=7.0",
+    "sioweb/oxid-kernel": "*",
+    "composer/composer" : "^1.6"
+  },
+  "autoload": {
+    "psr-4": {
+      "OxidCommunity\\Moduleinstaller\\": "src/"
+    },
+    "exclude-from-classmap": [
+        "src/Resources/oxid"
+    ]
+  }
+}
