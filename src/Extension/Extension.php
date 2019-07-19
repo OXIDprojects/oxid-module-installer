@@ -6,7 +6,7 @@
 
 declare (strict_types = 1);
 
-namespace OxidCommunity\Moduleinstaller\Extension;
+namespace OxidCommunity\ModuleInstaller\Extension;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
@@ -23,7 +23,7 @@ class Extension extends BaseExtension implements PrependExtensionInterface //imp
 	 */
 	public function getAlias()
 	{
-		return 'oxidcommunity-moduleinstaller';
+		return 'oxidcommunity-ModuleInstaller';
     }
   
     public function load(array $configs, BaseContainerBuilder $container)

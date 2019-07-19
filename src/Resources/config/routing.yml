@@ -1,78 +1,78 @@
 
 ### PACKAGES
 
-oxidcommunity_moduleinstaller_packages_new:
-    path: /oxid/moduleinstaller/packages/
+oxidcommunity_ModuleInstaller_packages_new:
+    path: /oxid/ModuleInstaller/packages/
     methods: [POST]
     defaults:
-        _controller: "OxidCommunityModuleinstallerBundle:Packages:new"
+        _controller: "OxidCommunityModuleInstallerBundle:Packages:new"
 
-oxidcommunity_moduleinstaller_packages_show:
-    path: /oxid/moduleinstaller/packages/{item}/
+oxidcommunity_ModuleInstaller_packages_show:
+    path: /oxid/ModuleInstaller/packages/{item}/
     methods: [GET]
     defaults:
-        _controller: "OxidCommunityModuleinstallerBundle:Packages:show"
+        _controller: "OxidCommunityModuleInstallerBundle:Packages:show"
     requirements:
         item: .+
 
-oxidcommunity_moduleinstaller_packages_update:
-    path: /oxid/moduleinstaller/packages/{item}/
+oxidcommunity_ModuleInstaller_packages_update:
+    path: /oxid/ModuleInstaller/packages/{item}/
     methods: [PUT]
     defaults:
-        _controller: "OxidCommunityModuleinstallerBundle:Packages:update"
+        _controller: "OxidCommunityModuleInstallerBundle:Packages:update"
     requirements:
         item: .+
 
-oxidcommunity_moduleinstaller_packages_delete:
-    path: /oxid/moduleinstaller/packages/{item}/
+oxidcommunity_ModuleInstaller_packages_delete:
+    path: /oxid/ModuleInstaller/packages/{item}/
     methods: [DELETE]
     defaults:
-        _controller: "OxidCommunityModuleinstallerBundle:Packages:delete"
+        _controller: "OxidCommunityModuleInstallerBundle:Packages:delete"
     requirements:
         item: .+
 
-oxidcommunity_moduleinstaller_packages:
-    path: /oxid/moduleinstaller/packages/
+oxidcommunity_ModuleInstaller_packages:
+    path: /oxid/ModuleInstaller/packages/
     methods: [GET]
     defaults:
-        _controller: "OxidCommunityModuleinstallerBundle:Packages:index"
+        _controller: "OxidCommunityModuleInstallerBundle:Packages:index"
 
 
 
 ### REPOSITORIES
 
-oxidcommunity_moduleinstaller_repositories_new:
-    path: /oxid/moduleinstaller/repositories/
+oxidcommunity_ModuleInstaller_repositories_new:
+    path: /oxid/ModuleInstaller/repositories/
     methods: [POST]
     defaults:
-        _controller: "OxidCommunityModuleinstallerBundle:Packages:new"
+        _controller: "OxidCommunityModuleInstallerBundle:Packages:new"
 
-oxidcommunity_moduleinstaller_repositories_show:
-    path: /oxid/moduleinstaller/repositories/{item}/
+oxidcommunity_ModuleInstaller_repositories_show:
+    path: /oxid/ModuleInstaller/repositories/{item}/
     methods: [GET]
     defaults:
-        _controller: "OxidCommunityModuleinstallerBundle:Repositories:show"
+        _controller: "OxidCommunityModuleInstallerBundle:Repositories:show"
     requirements:
         item: .+
 
-oxidcommunity_moduleinstaller_repositories_update:
-    path: /oxid/moduleinstaller/repositories/{item}/
+oxidcommunity_ModuleInstaller_repositories_update:
+    path: /oxid/ModuleInstaller/repositories/{item}/
     methods: [PUT]
     defaults:
-        _controller: "OxidCommunityModuleinstallerBundle:Repositories:update"
+        _controller: "OxidCommunityModuleInstallerBundle:Repositories:update"
     requirements:
         item: .+
 
-oxidcommunity_moduleinstaller_repositories_delete:
-    path: /oxid/moduleinstaller/repositories/{item}/
+oxidcommunity_ModuleInstaller_repositories_delete:
+    path: /oxid/ModuleInstaller/repositories/{item}/
     methods: [DELETE]
     defaults:
-        _controller: "OxidCommunityModuleinstallerBundle:Repositories:delete"
+        _controller: "OxidCommunityModuleInstallerBundle:Repositories:delete"
     requirements:
         item: .+
 
-oxidcommunity_moduleinstaller_repositories:
-    path: /oxid/moduleinstaller/repositories/
+oxidcommunity_ModuleInstaller_repositories:
+    path: /oxid/ModuleInstaller/repositories/
     methods: [GET]
     defaults:
-        _controller: "OxidCommunityModuleinstallerBundle:Repositories:index"
+        _controller: "OxidCommunityModuleInstallerBundle:Repositories:index"

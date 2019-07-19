@@ -1,5 +1,5 @@
 {
-  "name": "oxid-community/moduleinstaller",
+  "name": "oxid-community/ModuleInstaller",
   "description": "",
   "type": "oxideshop-module",
   "keywords": [
@@ -11,7 +11,7 @@
     "GPL-3.0"
   ],
   "extra": {
-    "oxid-kernel-plugin": "OxidCommunity\\Moduleinstaller\\OxidCommunityModuleinstallerBundle"
+    "oxid-kernel-plugin": "OxidCommunity\\ModuleInstaller\\OxidCommunityModuleInstallerBundle"
   },
   "require": {
     "php": ">=7.0",
@@ -21,7 +21,7 @@
   },
   "autoload": {
     "psr-4": {
-      "OxidCommunity\\Moduleinstaller\\": "src/"
+      "OxidCommunity\\ModuleInstaller\\": "src/"
     },
     "exclude-from-classmap": [
         "src/Resources/oxid"

@@ -1,8 +1,8 @@
 <?php
 
-namespace OxidCommunity\Moduleinstaller;
+namespace OxidCommunity\ModuleInstaller;
 
-use OxidCommunity\Moduleinstaller\Extension\Extension;
+use OxidCommunity\ModuleInstaller\Extension\Extension;
 use Symfony\Component\HttpKernel\Bundle\Bundle AS BaseBundle;
 use Sioweb\Oxid\Kernel\Bundle\BundleRoutesInterface;
 use Symfony\Component\Config\Loader\LoaderResolverInterface;
@@ -13,7 +13,7 @@ use Sioweb\Oxid\Kernel\Bundle\BundleConfigurationInterface;
 use Symfony\Component\Config\FileLocator;
 use Sioweb\Oxid\Kernel\DependencyInjection\Loader\YamlFileLoader;
 
-class OxidCommunityModuleinstallerBundle extends BaseBundle implements BundleRoutesInterface, BundleConfigurationInterface
+class OxidCommunityModuleInstallerBundle extends BaseBundle implements BundleRoutesInterface, BundleConfigurationInterface
 {
     /**
      * {@inheritdoc}
