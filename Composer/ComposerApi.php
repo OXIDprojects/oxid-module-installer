@@ -18,7 +18,13 @@ class ComposerApi
 {
 
 
-    protected function search($tokens, $onlyName, $type = null)
+    /**
+     * @param $search string searchwords whitespace to separate
+
+     * @params $type string the package type we searching
+     * @return array list of packages with name and description
+     */
+    protected function search($search, $type = null)
     {
         $input = new ArrayInput([]);
 
@@ -35,9 +41,9 @@ class ComposerApi
         $null = new NullOutput();
         $commandEvent = new CommandEvent(PluginEvents::COMMAND, 'search', $input, $null);
         $composer->getEventDispatcher()->dispatch($commandEvent->getName(), $commandEvent);
-
+        $onlyName = false;
         $flags = $onlyName ? RepositoryInterface::SEARCH_NAME : RepositoryInterface::SEARCH_FULLTEXT;
-        $results = $repos->search(implode(' ', $tokens), $flags, $type);
+        $results = $repos->search($search, $flags, $type);
         return $results;
 
     }
