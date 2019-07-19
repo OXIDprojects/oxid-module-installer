@@ -23,7 +23,7 @@ class Extension extends BaseExtension implements PrependExtensionInterface //imp
 	 */
 	public function getAlias()
 	{
-		return 'oxidcommunity-ModuleInstaller';
+		return 'oxidcommunity-moduleinstaller';
     }
   
     public function load(array $configs, BaseContainerBuilder $container)
