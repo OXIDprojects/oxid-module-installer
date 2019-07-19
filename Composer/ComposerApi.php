@@ -24,7 +24,7 @@ class ComposerApi
      * @params $type string the package type we searching
      * @return array list of packages with name and description
      */
-    protected function search($search, $type = null)
+    public function search($search, $type = null)
     {
         $input = new ArrayInput([]);
 
