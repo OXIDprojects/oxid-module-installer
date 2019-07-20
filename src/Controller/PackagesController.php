@@ -15,9 +15,10 @@ class PackagesController extends Controller
     public function indexAction()
     {
         $request = Request::createFromGlobals();
-        $search = $request->query->get('search');
+        $search = $request->query->get('search') ?: '';
+        $type = $request->query->get('type') ?: 'oxid-module';
         $composerApi = new ComposerApi();
-        $result = $composerApi->search($search);
+        $result = $composerApi->search($search,$type);
         return new JsonResponse($result);
     }
 

@@ -24,7 +24,7 @@ class ComposerApi
      * @params $type string the package type we searching
      * @return array list of packages with name and description
      */
-    public function search($search, $type = null)
+    public function search(string $search, $type = null)
     {
         $input = new ArrayInput([]);
 
@@ -54,4 +54,10 @@ class ComposerApi
         return $results;
 
     }
+
+    public function list()
+    {
+
+    }
+
 }

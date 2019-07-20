@@ -8,7 +8,7 @@
     "installer"
   ],
   "license": [
-    "GPL-3.0"
+    "GPL-3.0-only"
   ],
   "extra": {
     "oxid-kernel-plugin": "OxidCommunity\\ModuleInstaller\\OxidCommunityModuleInstallerBundle"
