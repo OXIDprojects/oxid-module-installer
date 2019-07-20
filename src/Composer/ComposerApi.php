@@ -48,7 +48,7 @@ class ComposerApi
         $null = new NullOutput();
         $commandEvent = new CommandEvent(PluginEvents::COMMAND, 'search', $input, $null);
         $composer->getEventDispatcher()->dispatch($commandEvent->getName(), $commandEvent);
-        $onlyName = false;
+        $onlyName = !isset($type);
         $flags = $onlyName ? RepositoryInterface::SEARCH_NAME : RepositoryInterface::SEARCH_FULLTEXT;
         $results = $repos->search($search, $flags, $type);
         return $results;

@@ -16,7 +16,7 @@ class PackagesController extends Controller
     {
         $request = Request::createFromGlobals();
         $search = $request->query->get('search') ?: '';
-        $type = $request->query->get('type') ?: 'oxid-module';
+        $type = $request->query->get('type') ?: null;
         $composerApi = new ComposerApi();
         $result = $composerApi->search($search,$type);
         return new JsonResponse($result);
