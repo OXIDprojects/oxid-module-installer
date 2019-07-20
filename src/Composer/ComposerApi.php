@@ -34,8 +34,8 @@ class ComposerApi
         $noPlugins = false;
         $nullIo = new NullIO();
         
-        // in Oxid EShop Path is missing
-        if (empty(getenv('HOME'))) {
+        // if running in Oxid EShop the path for composer must be set
+        if (function_exists('getShopBasePath') && empty(getenv('HOME'))) {
             $path = getShopBasePath() . "/../";
             putenv("HOME=$path");
         }
