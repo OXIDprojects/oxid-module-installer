@@ -33,6 +33,13 @@ class ComposerApi
 
         $noPlugins = false;
         $nullIo = new NullIO();
+        
+        // in Oxid EShop Path is missing
+        if (empty(getenv('HOME'))) {
+            $path = getShopBasePath() . "/../";
+            putenv("HOME=$path");
+        }
+        
         $composer = Factory::create($nullIo, array(), $noPlugins);
         $localRepo = $composer->getRepositoryManager()->getLocalRepository();
         $installedRepo = new CompositeRepository(array($localRepo, $platformRepo));
