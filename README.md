@@ -12,12 +12,21 @@ Neben den Vorteilen, beklagen mehrere Benutzer über all im Netz zu recht, dass 
 
 Um die Vorteile zu nutzen und die Nachteile möglichst zu kompensieren, wurde das Projekt eines Installers gestartet. Wichtig zu erklären, dieses Modul muss gänzlich unabhängig von Oxid funktionieren und es sollte maximal FTP nötig sein, um den Installer hochzuladen. Damit wären Benutzer in der Lage, Oxid mit aufrufen des Installers zu installieren.
 
+### Ablauf
+
+1. Der Installer wird im Oxid-Backend Module installieren können, zumindest dafür wird keine Konsole mehr nötig sein
+2. Der Installer wird ohne Oxid nutzbar sein
+3. Der Installer wird Pakete von anderen Quellen als Packagist installieren können
+4. Firmen werden private Pakete anbieten können
+
 ### Vorteile & Pläne
 
 - Shops könnten automatisch per Cronjob aktualisiert werden (Je weniger extra Module umso Update-sicherer)
 - Sollte eine Aktualisierung den Shop stören, könnte die alte Version wieder hergestellt werden
 - Module und Oxid selbst, können per grafischer Oberfläche installiert werden
 - Fehlerausgaben könnten einfacher erklärt werden
+
+Es sollte ebenfalls möglichsein, Module automatisch zu aktivieren und die Datenbank zu aktualisieren nach der Installation oder einem Update.
 
 ## Warum Symfony?
 
@@ -34,3 +43,9 @@ Symfony hat sich mit seiner enorm großen Community als stabil und innovativ in 
 - Core-Features können nun Stück für Stück durch Symfony-Features wie Dependeny Injection und Routing ersetzt werden
 - Firmen haben es nun einfacher, ihre API/Libs an Oxid anzubinden
 - Symfony wird permanent weiterentwickelt. Es wird auf kurz oder lang möglich Versionen für Pakete dynamischer zu definieren, ohne dass Update-Probleme auftauchen
+
+## Warum sind wir nicht fertig geworden?
+
+Das Projekt ist schon sehr weit Fortgeschritten und kann nun von jedem weiterentwickelt bzw. von Entwicklern genutzt werden. Wir bieten jetzt schon den Kernel zur Nutzung an. Die Installation via Composer wird noch etliche Wochen (Monate) dauern. Die reine Funktion sollte relativ schnell aufgestellt sein, der Löwenanteil wird die Herstellung der Kompatibilität für alle Hoster, Entwicklungsumgebungen, Betriebssysteme und Software-Versionen darstellen.
+
+Wir sind in jedem Fall auf etwas Gedult und viel Feedback angewiesen.
