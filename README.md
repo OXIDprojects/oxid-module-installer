@@ -1,5 +1,35 @@
 # Oxid hackathon 2019, Symfony & Oneklickinstaller
 
+## Testen / Ausführen
+
+### Installieren
+
+`composer create-project oxid-community/moduleinstaller`
+
+### Ausführen
+
+#### Integrierter PHP-Server 
+
+Wenn PHP global installiert ist, kann das Tool mit dem integrierten PHP-Server ausgeführt werden:
+
+`php -S localhost:8000`
+
+Im Browser kann der Installer nun per URL aufgerufen werden: http://localhost:8000
+
+#### Apache/Nginx
+
+Der Installer läuft auch in jeder bekannten Apache-Installation mit PHP wie WampServer, Xampp, Wamp, Lamp, Docker ...
+
+Im Browser kann der Installer per URL aufgerufen werden http://localhost/pfad/moduleinstaller
+
+**Hinweis:** Je nach konfiguration der Domain oder des Ports kann die URL abweichen.
+
+### Routen testen
+
+Alle Routen werden in der Datei `src/Resources/config/routing.yml` notiert. Diese können an die oben genannten URL angehängt werden:
+
+`http://localhost:8000/oxid/moduleinstaller/repositories/`
+
 ## Vorgang & Überlegungen
 
 Bei der Themenfindung ist uns relativ schnell klar geworden, dass diese beiden Projekte zusammen entwickelt werden müssen. Der Installer, um die Benutzerfreundlichkeit zu erhöhen und den Kernel der die Pakete entgegen nimmt und bei Bedarf in Oxid integriert und Bundles ohne aufwand nutzbar macht.
