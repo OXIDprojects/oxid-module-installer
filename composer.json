@@ -1,5 +1,5 @@
 {
-  "name": "oxid-community/ModuleInstaller",
+  "name": "oxid-community/moduleinstaller",
   "description": "",
   "type": "oxideshop-module",
   "keywords": [
@@ -8,14 +8,21 @@
     "installer"
   ],
   "license": [
-    "GPL-3.0-only"
+    "GPL-3.0"
   ],
   "extra": {
     "oxid-kernel-plugin": "OxidCommunity\\ModuleInstaller\\OxidCommunityModuleInstallerBundle"
   },
+  "scripts": {
+    "post-install-cmd": [
+      "Sioweb\\Oxid\\Kernel\\Composer\\Plugin::registrateRootPlugin"
+    ],
+    "post-update-cmd": [
+      "Sioweb\\Oxid\\Kernel\\Composer\\Plugin::registrateRootPlugin"
+    ]
+  },
   "require": {
     "php": ">=7.0",
-    "oxid-esales/oxideshop-composer-plugin" : "^2",
     "sioweb/oxid-kernel": "*",
     "composer/composer" : "^1.6"
   },

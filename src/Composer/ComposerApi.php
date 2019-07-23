@@ -24,8 +24,12 @@ class ComposerApi
      * @params $type string the package type we searching
      * @return array list of packages with name and description
      */
-    public function search(string $search, $type = null)
+    public function search($search, $type = null)
     {
+        if(defined('INDEXED_KERNEL')) {
+            return [];
+        }
+        
         $input = new ArrayInput([]);
 
         // init repos
@@ -34,8 +38,8 @@ class ComposerApi
         $noPlugins = false;
         $nullIo = new NullIO();
         
-        // if running in Oxid EShop the path for composer must be set
-        if (function_exists('getShopBasePath') && empty(getenv('HOME'))) {
+        // in Oxid EShop Path is missing
+        if (empty(getenv('HOME'))) {
             $path = getShopBasePath() . "/../";
             putenv("HOME=$path");
         }
@@ -48,16 +52,10 @@ class ComposerApi
         $null = new NullOutput();
         $commandEvent = new CommandEvent(PluginEvents::COMMAND, 'search', $input, $null);
         $composer->getEventDispatcher()->dispatch($commandEvent->getName(), $commandEvent);
-        $onlyName = !isset($type);
+        $onlyName = false;
         $flags = $onlyName ? RepositoryInterface::SEARCH_NAME : RepositoryInterface::SEARCH_FULLTEXT;
         $results = $repos->search($search, $flags, $type);
         return $results;
 
     }
-
-    public function list()
-    {
-
-    }
-
 }

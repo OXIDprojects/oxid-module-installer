@@ -15,10 +15,9 @@ class PackagesController extends Controller
     public function indexAction()
     {
         $request = Request::createFromGlobals();
-        $search = $request->query->get('search') ?: '';
-        $type = $request->query->get('type') ?: null;
+        $search = $request->query->get('search');
         $composerApi = new ComposerApi();
-        $result = $composerApi->search($search,$type);
+        $result = $composerApi->search($search);
         return new JsonResponse($result);
     }
 
