@@ -23,7 +23,7 @@
   },
   "require": {
     "php": ">=7.0",
-    "sioweb/oxid-kernel": "*",
+    "oxidcommunity/symfony-kernel": "*",
     "composer/composer" : "^1.6"
   },
   "autoload": {
