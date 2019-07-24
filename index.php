@@ -1,12 +1,10 @@
 <?php
 
-namespace Sioweb\Oxid\Kernel\Legacy\Core;
-
 define('INDEXED_KERNEL', true);
 
 require "vendor/autoload.php";
 
-use Sioweb\Oxid\Kernel\HttpKernel\Kernel;
+use OxidCommunity\SymfonyKernel\HttpKernel\Kernel;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Debug\Debug;
 

@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack:///./src/Resources/public/scss/start.scss"],"names":[],"mappings":"AACA;EACI,WAAW;EACX,gBAAgB","file":"styles.min.css","sourcesContent":["@import \"include/_variables\";\r\n* {\r\n    color: #fff;\r\n    background: #000;\r\n}"],"sourceRoot":""}

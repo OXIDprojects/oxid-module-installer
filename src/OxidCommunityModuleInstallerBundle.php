@@ -4,14 +4,14 @@ namespace OxidCommunity\ModuleInstaller;
 
 use OxidCommunity\ModuleInstaller\Extension\Extension;
 use Symfony\Component\HttpKernel\Bundle\Bundle AS BaseBundle;
-use Sioweb\Oxid\Kernel\Bundle\BundleRoutesInterface;
+use OxidCommunity\SymfonyKernel\Bundle\BundleRoutesInterface;
 use Symfony\Component\Config\Loader\LoaderResolverInterface;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\Routing\RouteCollection;
-use Sioweb\Oxid\Kernel\DependencyInjection\ContainerBuilder;
-use Sioweb\Oxid\Kernel\Bundle\BundleConfigurationInterface;
+use OxidCommunity\SymfonyKernel\DependencyInjection\ContainerBuilder;
+use OxidCommunity\SymfonyKernel\Bundle\BundleConfigurationInterface;
 use Symfony\Component\Config\FileLocator;
-use Sioweb\Oxid\Kernel\DependencyInjection\Loader\YamlFileLoader;
+use OxidCommunity\SymfonyKernel\DependencyInjection\Loader\YamlFileLoader;
 
 class OxidCommunityModuleInstallerBundle extends BaseBundle implements BundleRoutesInterface, BundleConfigurationInterface
 {
@@ -38,13 +38,20 @@ class OxidCommunityModuleInstallerBundle extends BaseBundle implements BundleRou
 
     public function getBundleConfiguration($name, ContainerBuilder $container) : array
     {
-        // $loader = new YamlFileLoader(
-        //     $container,
-        //     new FileLocator(__DIR__.'/Resources/config')
-        // );
-        // $loader->load('security.yml');
-        // $loader->containerConfig();
+        $extensionConfigs = $container->getExtensionConfigs();
+
+        if ($name === 'twig') {
+            if(empty($extensionConfigs['twig']['paths'])) {
+                $extensionConfigs['twig']['paths'] = [];
+            }
+            if(is_dir($container->getParameter('kernel.root_dir').'/../vendor/oxid-community/oxid-module-installer/src/Resources/views/')) {
+                $extensionConfigs['twig']['paths'][$container->getParameter('kernel.root_dir').'/../vendor/oxid-community/oxid-module-installer/src/Resources/views/'] = 'OxidCommunityModuleInstaller';
+            } else {
+                $extensionConfigs['twig']['paths'][$container->getParameter('kernel.project_dir').'/src/Resources/views/'] = 'OxidCommunityModuleInstaller';
+            }
+        }
         
-        return $container->getExtensionConfigs();
+        return $extensionConfigs;
     }
+
 }

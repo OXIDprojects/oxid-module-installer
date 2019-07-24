@@ -10,7 +10,7 @@ namespace OxidCommunity\ModuleInstaller\Extension;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
-use Sioweb\Oxid\Kernel\DependencyInjection\ContainerBuilder;
+use OxidCommunity\SymfonyKernel\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder AS BaseContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension AS BaseExtension;

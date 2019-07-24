@@ -11,20 +11,24 @@
     "GPL-3.0"
   ],
   "extra": {
-    "oxid-kernel-plugin": "OxidCommunity\\ModuleInstaller\\OxidCommunityModuleInstallerBundle"
+    "oxid-kernel-plugin": {
+      "oxid-community/moduleinstaller": "OxidCommunity\\ModuleInstaller\\OxidCommunityModuleInstallerBundle",
+      "twig": "Symfony\\Bundle\\TwigBundle\\TwigBundle"
+    }
   },
   "scripts": {
     "post-install-cmd": [
-      "Sioweb\\Oxid\\Kernel\\Composer\\Plugin::registrateRootPlugin"
+      "OxidCommunity\\SymfonyKernel\\Composer\\Plugin::registrateRootPlugin"
     ],
     "post-update-cmd": [
-      "Sioweb\\Oxid\\Kernel\\Composer\\Plugin::registrateRootPlugin"
+      "OxidCommunity\\SymfonyKernel\\Composer\\Plugin::registrateRootPlugin"
     ]
   },
   "require": {
     "php": ">=7.0",
-    "oxidcommunity/symfony-kernel": "*",
-    "composer/composer" : "^1.6"
+    "oxid-community/symfony-kernel": "^0.6.3",
+    "composer/composer" : "^1.6",
+    "symfony/twig-bundle": "^3.2"
   },
   "autoload": {
     "psr-4": {
@@ -33,5 +37,11 @@
     "exclude-from-classmap": [
         "src/Resources/oxid"
     ]
-  }
+  },
+  "repositories":[
+    {
+      "type": "vcs",
+      "url": "https://github.com/OXIDprojects/oxid-symfony-kernel"
+    }
+  ]
 }

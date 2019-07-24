@@ -76,3 +76,13 @@ oxidcommunity_moduleinstaller_repositories:
     methods: [GET]
     defaults:
         _controller: "OxidCommunityModuleInstallerBundle:Repositories:index"
+
+
+oxidcommunity_moduleinstaller_catchall:
+    path: /{_url_fragment}
+    defaults:
+        _scope: frontend
+        _token_check: true
+        _controller: "OxidCommunityModuleInstallerBundle:Frontend:index"
+    requirements:
+        _url_fragment: .*
