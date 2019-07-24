@@ -12,7 +12,7 @@
 
 Wenn PHP global installiert ist, kann das Tool mit dem integrierten PHP-Server ausgeführt werden:
 
-`php -S localhost:8000`
+`composer run-script server`
 
 Im Browser kann der Installer nun per URL aufgerufen werden: http://localhost:8000
 
