@@ -14,7 +14,7 @@ Wenn PHP global installiert ist, kann das Tool mit dem integrierten PHP-Server a
 
 `composer run-script server`
 
-Im Browser kann der Installer nun per URL aufgerufen werden: http://localhost:8000
+Im Browser kann der Installer nun per URL aufgerufen werden: http://localhost:8080
 
 #### Apache/Nginx
 
@@ -28,7 +28,7 @@ Im Browser kann der Installer per URL aufgerufen werden http://localhost/pfad/mo
 
 Alle Routen werden in der Datei `src/Resources/config/routing.yml` notiert. Diese können an die oben genannten URL angehängt werden:
 
-`http://localhost:8000/oxid/moduleinstaller/repositories/`
+`http://localhost:8080/oxid/moduleinstaller/repositories/`
 
 ## Vorgang & Überlegungen
 

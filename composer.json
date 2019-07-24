@@ -23,7 +23,7 @@
     "post-update-cmd": [
       "OxidCommunity\\SymfonyKernel\\Composer\\Plugin::registrateRootPlugin"
     ],
-    "server": "php -S localhost:8000"
+    "server": "php -S localhost:8080"
   },
   "require": {
     "php": ">=7.0",
