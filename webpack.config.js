@@ -20,8 +20,8 @@ function findPath() {
 	return f;
 }
 
-const src = findPath(__dirname, 'public');
-const out = findPath(__dirname, 'public');
+const src = findPath(__dirname, 'public/src');
+const out = findPath(__dirname, 'public/src');
 
 
 function commonEntries(srcDir) {
@@ -53,7 +53,7 @@ module.exports = {
 	},
 	resolveLoader: {
 	  	modules: [
-			'public/node_modules'
+			'./public/node_modules'
 		],
 	},
 	resolve: {
