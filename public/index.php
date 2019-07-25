@@ -2,7 +2,7 @@
 
 define('INDEXED_KERNEL', true);
 
-require "vendor/autoload.php";
+require "../vendor/autoload.php";
 
 use OxidCommunity\SymfonyKernel\HttpKernel\Kernel;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,7 +16,8 @@ $_GET['_controller'] = 1;
 Request::enableHttpMethodParameterOverride();
 $kernel = new Kernel('prod', false);
 
-$kernel->setProjectRoot(str_replace('source/modules/oxidcommunity/SymfonyKernel/Core', '', preg_replace('|\\\|is', '/', __DIR__)));
+// $_SERVER['DOCUMENT_ROOT'] = str_replace('source/modules/oxidcommunity/SymfonyKernel/Core', '', preg_replace('|\\\|is', '/', __DIR__)) . '/../';
+$kernel->setProjectRoot(str_replace('source/modules/oxidcommunity/SymfonyKernel/Core', '', preg_replace('|\\\|is', '/', __DIR__)) . '/../');
 $request = Request::createFromGlobals();
 $response = $kernel->handle($request);
 //$responseStatusCode = $response->getStatusCode();

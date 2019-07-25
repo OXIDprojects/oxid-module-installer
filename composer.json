@@ -13,7 +13,9 @@
   "extra": {
     "oxid-kernel-plugin": {
       "oxid-community/moduleinstaller": "OxidCommunity\\ModuleInstaller\\OxidCommunityModuleInstallerBundle",
-      "twig": "Symfony\\Bundle\\TwigBundle\\TwigBundle"
+      "twig": "Symfony\\Bundle\\TwigBundle\\TwigBundle",
+      "jwt": "Lexik\\Bundle\\JWTAuthenticationBundle\\LexikJWTAuthenticationBundle",
+      "symfony/security-bundle": "Symfony\\Bundle\\SecurityBundle\\SecurityBundle"
     }
   },
   "scripts": {
@@ -23,13 +25,14 @@
     "post-update-cmd": [
       "OxidCommunity\\SymfonyKernel\\Composer\\Plugin::registrateRootPlugin"
     ],
-    "server": "php -S localhost:8080"
+    "server": "php -S localhost:8088 -t public"
   },
   "require": {
     "php": ">=7.0",
     "oxid-community/symfony-kernel": "^0.6.3",
     "composer/composer" : "^1.6",
-    "symfony/twig-bundle": "^3.2"
+    "symfony/twig-bundle": "^3.2",
+    "lexik/jwt-authentication-bundle": "^2.4.4"
   },
   "autoload": {
     "psr-4": {

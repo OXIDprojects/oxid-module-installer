@@ -1,4 +1,6 @@
 /vendor
 /source
 /kernel
+
 composer.lock
+.env

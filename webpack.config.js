@@ -1,10 +1,10 @@
-const path = require('./src/Resources/public/node_modules/path');
-const glob = require('./src/Resources/public/node_modules/glob');
-const autoprefixer = require('./src/Resources/public/node_modules/autoprefixer');
-const webpack = require('./src/Resources/public/node_modules/webpack');
+const path = require('./public/node_modules/path');
+const glob = require('./public/node_modules/glob');
+const autoprefixer = require('./public/node_modules/autoprefixer');
+const webpack = require('./public/node_modules/webpack');
 
-const UglifyJsPlugin = require('./src/Resources/public/node_modules/uglifyjs-webpack-plugin');
-const MiniCssExtractPlugin = require('./src/Resources/public/node_modules/mini-css-extract-plugin');
+const UglifyJsPlugin = require('./public/node_modules/uglifyjs-webpack-plugin');
+const MiniCssExtractPlugin = require('./public/node_modules/mini-css-extract-plugin');
 
 
 // turns a base directory into a function that accepts further path segments and
@@ -20,8 +20,8 @@ function findPath() {
 	return f;
 }
 
-const src = findPath(__dirname, 'src/Resources/public');
-const out = findPath(__dirname, 'src/Resources/public');
+const src = findPath(__dirname, 'public');
+const out = findPath(__dirname, 'public');
 
 
 function commonEntries(srcDir) {
@@ -53,12 +53,12 @@ module.exports = {
 	},
 	resolveLoader: {
 	  	modules: [
-			'src/Resources/public/node_modules'
+			'public/node_modules'
 		],
 	},
 	resolve: {
 		modules: [
-			path.resolve('./src/Resources/public/node_modules')
+			path.resolve('./public/node_modules')
 		]
 	},	
 	plugins: [
