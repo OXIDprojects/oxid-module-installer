@@ -1,5 +1,5 @@
 {
-  "name": "oxid-community/ModuleInstaller",
+  "name": "oxid-community/moduleinstaller",
   "description": "",
   "type": "oxideshop-module",
   "keywords": [
@@ -16,8 +16,8 @@
   "require": {
     "php": ">=7.0",
     "oxid-esales/oxideshop-composer-plugin" : "^2",
-    "sioweb/oxid-kernel": "*",
-    "composer/composer" : "^1.6"
+    "sioweb/oxid-kernel": "0.5",
+    "composer/composer" : "^1.8"
   },
   "autoload": {
     "psr-4": {

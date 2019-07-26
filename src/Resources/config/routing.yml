@@ -2,8 +2,8 @@
 ### PACKAGES
 
 oxidcommunity_moduleinstaller_packages_new:
-    path: /oxid/moduleinstaller/packages/
-    methods: [POST]
+    path: /oxid/moduleinstaller/packages_new/
+    methods: [GET]
     defaults:
         _controller: "OxidCommunityModuleInstallerBundle:Packages:new"
 

@@ -24,6 +24,15 @@ class PackagesController extends Controller
 
     public function newAction()
     {
+        $composerApi = new ComposerApi();
+        ob_implicit_flush();
+        print "<!DOCTYPE html>
+        <head><style>error{color:red;}</style></head>
+        <body>starte:...<br>";
+        ob_flush();
+        $composerApi->requirePackage('composer/composer');
+        print "</body>";
+        exit(0);
         return new JsonResponse([
             'status' => 'new package'
         ]);
