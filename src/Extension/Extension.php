@@ -10,13 +10,11 @@ namespace OxidCommunity\ModuleInstaller\Extension;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
-use OxidCommunity\SymfonyKernel\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder AS BaseContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension AS BaseExtension;
-use Symfony\Bundle\SecurityBundle\DependencyInjection\SecurityExtension;
 
-class Extension extends BaseExtension implements PrependExtensionInterface //implements OxidKernelExtensionInterface
+class Extension extends BaseExtension
 {
 	/**
 	 * {@inheritdoc}
@@ -28,11 +26,5 @@ class Extension extends BaseExtension implements PrependExtensionInterface //imp
   
     public function load(array $configs, BaseContainerBuilder $container)
     {
-        // Late loading
-    }
-
-    public function prepend(BaseContainerBuilder $container)
-    {
-        // Preloading
     }
 }

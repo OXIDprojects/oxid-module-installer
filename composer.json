@@ -12,10 +12,10 @@
   ],
   "extra": {
     "oxid-kernel-plugin": {
-      "oxid-community/moduleinstaller": "OxidCommunity\\ModuleInstaller\\OxidCommunityModuleInstallerBundle",
-      "twig": "Symfony\\Bundle\\TwigBundle\\TwigBundle",
+      "oxid-community/symfony-security-bundle": "OxidCommunity\\SecurityBundle\\OxidCommunitySecurityBundle",
       "jwt": "Lexik\\Bundle\\JWTAuthenticationBundle\\LexikJWTAuthenticationBundle",
-      "symfony/security-bundle": "Symfony\\Bundle\\SecurityBundle\\SecurityBundle"
+      "twig": "Symfony\\Bundle\\TwigBundle\\TwigBundle",
+      "oxid-community/moduleinstaller": "OxidCommunity\\ModuleInstaller\\OxidCommunityModuleInstallerBundle"
     }
   },
   "scripts": {
@@ -29,23 +29,29 @@
   },
   "require": {
     "php": ">=7.0",
-    "oxid-community/symfony-kernel": "^0.6.3",
-    "composer/composer" : "^1.6",
+    "oxid-community/symfony-kernel": "*",
+    "oxid-community/symfony-security-bundle": "*",
+    "composer/composer": "^1.6",
     "symfony/twig-bundle": "^3.2",
-    "lexik/jwt-authentication-bundle": "^2.4.4"
+    "lexik/jwt-authentication-bundle": "^2.4.4",
+    "symfony/dotenv": "^4.3"
   },
   "autoload": {
     "psr-4": {
       "OxidCommunity\\ModuleInstaller\\": "src/"
     },
     "exclude-from-classmap": [
-        "src/Resources/oxid"
+      "src/Resources/oxid"
     ]
   },
-  "repositories":[
+  "repositories": [
     {
       "type": "vcs",
       "url": "https://github.com/OXIDprojects/oxid-symfony-kernel"
+    },
+    {
+      "type": "vcs",
+      "url": "https://github.com/OXIDprojects/oxid-security-bundle"
     }
   ]
 }
