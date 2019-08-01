@@ -1,7 +1,20 @@
+
+oxidcommunity_moduleinstaller_auth:
+    path: /oxid/moduleinstaller/auth/
+    defaults:
+        _controller: "OxidCommunityModuleInstallerBundle:User:auth"
+
+oxidcommunity_moduleinstaller_auth_jwt:
+    path: /oxid/moduleinstaller/auth/check/
+    defaults:
+        _controller: "OxidCommunityModuleInstallerBundle:User:jwt"
+
 ### PACKAGES
 
 oxidcommunity_moduleinstaller_packages_new:
     path: /oxid/moduleinstaller/packages/
+    options:
+        auth: true
     methods: [POST]
     defaults:
         _controller: "OxidCommunityModuleInstallerBundle:Packages:new"
