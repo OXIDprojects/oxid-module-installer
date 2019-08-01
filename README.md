@@ -16,6 +16,8 @@ Wenn PHP global installiert ist, kann das Tool mit dem integrierten PHP-Server a
 
 Im Browser kann der Installer nun per URL aufgerufen werden: http://localhost:8088
 
+**Nice2Know:** Mit der Option --timeout=0 brechen die Scripts nicht nach 300 Sekunden ab: `composer run-script server --timeout=0`
+
 #### Apache/Nginx
 
 Der Installer läuft auch in jeder bekannten Apache-Installation mit PHP wie WampServer, Xampp, Wamp, Lamp, Docker ...
