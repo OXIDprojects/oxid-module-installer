@@ -1,6 +1,7 @@
 /vendor
 /source
 /kernel
+/node_modules
 
 composer.lock
 .env

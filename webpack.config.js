@@ -1,14 +1,6 @@
-const path = require('./public/node_modules/path');
-const glob = require('./public/node_modules/glob');
-const autoprefixer = require('./public/node_modules/autoprefixer');
-const webpack = require('./public/node_modules/webpack');
+var path = require('path');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const UglifyJsPlugin = require('./public/node_modules/uglifyjs-webpack-plugin');
-const MiniCssExtractPlugin = require('./public/node_modules/mini-css-extract-plugin');
-
-
-// turns a base directory into a function that accepts further path segments and
-// returns a resolved directory
 function findPath() {
 	const locations = Array.from(arguments);
 	function f() {
@@ -22,97 +14,46 @@ function findPath() {
 
 const src = findPath(__dirname, 'public/src');
 const out = findPath(__dirname, 'public/src');
-
-
-function commonEntries(srcDir) {
-	const entries = {
-		'scripts.min': [
-		]
-	};
-
-	console.log('SRC', src(srcDir, 'scss/*.scss'));
-	glob.sync(src(srcDir, 'scss/*.scss')).forEach(function (widget) {
-		entries['scripts.min'].push(src(srcDir, widget.replace(__dirname + '/' + srcDir + '/', '')));
-	});
-	glob.sync(src(srcDir, 'js/*.js')).forEach(function (widget) {
-		entries['scripts.min'].push(src(srcDir, widget.replace(__dirname + '/' + srcDir + '/', '')));
-	});
-
-	console.log(entries);
-	return entries;
-}
-
 const Directory = './'
 
 module.exports = {
-	entry: commonEntries(Directory),
-	devtool: 'source-map',
+	entry: {
+        'script.min': [
+            out(Directory, 'vue/index.js')
+        ]
+    },
+    mode: 'development',
+    resolve: {
+        extensions: ['.js', '.vue']
+    },
 	output: {
-		path: out(Directory, 'dist'),
+		path: out(Directory, '../dist'),
 		filename: '[name].js'
 	},
-	resolveLoader: {
-	  	modules: [
-			'./public/node_modules'
-		],
-	},
-	resolve: {
-		modules: [
-			path.resolve('./public/node_modules')
-		]
-	},	
-	plugins: [
-		new MiniCssExtractPlugin({
-			filename: 'styles.min.css',
-			chunkFilename: '[id].css',
-		}),
-		new UglifyJsPlugin({
-			test: /\.js$/i,
-			exclude: /node_modules/,
-			cache: true,
-			sourceMap: true
-		}),
-	],
-	module: {
-		rules: [
-			{
-				test: /src.*\.jsx?$/,
-				exclude: /node_modules\/(?!(dom7|ssr-window)\/).*/,
-				loaders: ['babel-loader?cacheDirectory=true']
-			},
-			{
-				test: /\.(png|woff|woff2|eot|ttf|svg)$/,
-				loader: 'url-loader?limit=100000'
-			},
-			{
-				test: /\.sass|\.scss|\.css$/,
-				use: [
-					MiniCssExtractPlugin.loader,
-					{
-						loader: "css-loader",
-						options: {
-							sourceMap: true
-						},
-					},
-					{
-						loader: 'postcss-loader',
-						options: {
-							ident: 'postcss', // See: https://github.com/postcss/postcss-loader/issues/288
-							sourceMap: true,
-							options: {
-							  plugins: () => [require('autoprefixer')]
-							}
-						}
-					},
-					{
-						loader: "sass-loader",
-						options: {
-							sourceMap: true,
-							data: '@import "include/_variables";'
-						}
-					}
-				]
-			}
-		],
-	}
-};
+    module: {
+        rules: [
+            {
+                test: /\.vue?$/,
+                exclude: /(node_modules)/,
+                use: 'vue-loader'
+            },
+            {
+                test: /\.js?$/,
+                exclude: /(node_modules)/,
+                use: 'babel-loader'
+            }
+        ]
+    },
+    plugins: [new HtmlWebpackPlugin({
+        template: out(Directory, 'vue/index.html')
+    })],
+    devServer: {
+        historyApiFallback: true
+    },
+    externals: {
+        // global app config object
+        config: JSON.stringify({
+            apiUrl: '/oxid/moduleinstaller/auth/'
+        })
+    }
+}
