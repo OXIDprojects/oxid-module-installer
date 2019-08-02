@@ -14,7 +14,7 @@ function login(username, password) {
         body: JSON.stringify({ username, password })
     };
 
-    return fetch(`${config.apiUrl}`, requestOptions)
+    return fetch(((location.href.indexOf('oxid.phar.php') !== -1 ? '/oxid.phar.php' : '')) + `${config.apiUrl}`, requestOptions)
         .then(handleResponse)
         .then(user => {
             // login successful if there's a jwt token in the response
@@ -40,7 +40,7 @@ function getAll() {
     };
 
     console.log(requestOptions);
-    return fetch(`${config.apiUrl}check/`, requestOptions).then(handleResponse);
+    return fetch(((location.href.indexOf('oxid.phar.php') !== -1 ? '/oxid.phar.php' : '')) + `${config.apiUrl}check/`, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {

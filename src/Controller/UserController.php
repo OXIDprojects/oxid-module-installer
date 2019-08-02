@@ -11,23 +11,34 @@ use Symfony\Component\HttpFoundation\Request;
 
 class UserController extends Controller
 {
+    private $users = [
+        [
+            'id' => 1,
+            'username' => 'test',
+            'password' => 'test',
+            'firstName' => 'Sascha',
+            'lastName' => 'Weidner',
+        ]
+    ];
 
     public function authAction()
     {
-        die("<pre>" . __METHOD__ .":\n" . print_r('ASDASD', true));
+        $Data = json_decode(file_get_contents('php://input'), true);
+        foreach($this->users as $user) {
+            if(
+                $user['username'] === $Data['username'] &&
+                $user['password'] === $Data['password']
+            ) {
+                $user['token'] = 'fake-jwt-token';
+                die(json_encode($user));
+            }
+            die(json_encode(['error' => 'Username or password is incorrect!']));
+        }
     }
 
     public function jwtAction()
     {
-        return new JsonResponse([
-            [
-                'id' => 1,
-                'username' => 'test',
-                'password' => 'test',
-                'firstName' => 'Sascha',
-                'lastName' => 'Weidner',
-            ]
-        ]);
+        return new JsonResponse($this->users);
     }
 
 }

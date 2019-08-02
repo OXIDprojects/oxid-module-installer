@@ -7,6 +7,7 @@ import LoginPage from '../login/LoginPage'
 Vue.use(Router);
 
 export const router = new Router({
+  base: ((location.href.indexOf('oxid.phar.php') !== -1 ? '/oxid.phar.php' : '')),
   mode: 'history',
   routes: [
     { path: '/', component: HomePage },
