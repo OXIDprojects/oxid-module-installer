@@ -1,4 +1,4 @@
-# Oxid hackathon 2019, Symfony & Oneklickinstaller
+# Oxid hackathon 2019, Symfony & Oneclick-Installer
 
 ## Testen / Ausführen
 
