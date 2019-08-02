@@ -1,5 +1,28 @@
 # Oxid hackathon 2019, Symfony & Oneklickinstaller
 
+## Ausführbare / Executable Datei erzeugen
+
+Die Datei wird mit [Phing](https://www.phing.info/) und [Box](https://github.com/humbug/box) erzeugt. Um die ausführbare Datei zu erzeugen, können beide Pakete installiert werden:
+
+```
+composer global req phing/phing
+composer global req humbug/box
+```
+
+Danach kann die Datei per Konsole erzeugt werden:
+
+### Dev
+
+```
+phing debug
+```
+
+### Prod
+
+```
+phing
+```
+
 ## Testen / Ausführen
 
 ### Installieren
