@@ -2,14 +2,16 @@
 
 ## Ausführbare / Executable Datei erzeugen
 
-Die Datei wird mit [Phing](https://www.phing.info/) und [Box](https://github.com/humbug/box) erzeugt. Um die ausführbare Datei zu erzeugen, können beide Pakete installiert werden:
+Die Datei wird mit [Phing](https://www.phing.info/) und [Box](https://github.com/humbug/box) erzeugt. Um die ausführbare Datei zu erzeugen, müssen  beide Pakete installiert werden:
 
 ```
 composer global req phing/phing
 composer global req humbug/box
 ```
 
-Danach kann die Datei per Konsole erzeugt werden:
+Nach der Installation, kann die Datei `oxid.phar` bzw. `oxid.phar.php` erzeugt werden. Diese Datei ist ausführbar wie eine `index.php` und kann anstelle des Modules mit dem unten genannten Build-In Server von PHP gestartet werden.
+
+Die Datei `oxid.phar.php` befindet sich nach der Erstellung im Verzeichnis `/public`.
 
 ### Dev
 
