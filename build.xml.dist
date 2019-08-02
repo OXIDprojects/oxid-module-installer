@@ -1,0 +1,124 @@
+<?xml version="1.0"?>
+<project name="Oxid Moduleinstaller" default="list" basedir=".">
+    <exec executable="git" outputProperty="version" checkreturn="true">
+        <arg value="describe" />
+        <arg value="--tags" />
+        <arg value="--always" />
+    </exec>
+
+    <target name="list">
+        <echo message="Available commands:" />
+        <echo message="  phing prod  -  Builds production Phar (fresh clone of current Git commit)" />
+        <echo message="  phing dev   -  Builds development Phar (from current source files)" />
+    </target>
+
+    <target name="prod" depends="clone, composer, npm, build-prod, box-prod, cleanup, version">
+        <echo message="Oxid Moduleinstaller ${version} build complete" />
+    </target>
+
+    <target name="dev" depends="build-dev, box-dev, version">
+        <echo message="Oxid Moduleinstaller ${version} build complete" />
+    </target>
+
+    <target name="debug" depends="build-dev, box-dev">
+        <move file="public/oxid.phar" tofile="public/oxid.phar.php" overwrite="true"/>
+        <delete file="oxid.version" />
+        <echo message="Oxid Moduleinstaller ${version} build complete" />
+    </target>
+
+    <target name="clone">
+        <echo message="Cloning into oxid-${version}" />
+        <exec executable="git">
+            <arg value="clone" />
+            <arg value="." />
+            <arg value="oxid-${version}" />
+        </exec>
+        <exec executable="git" dir="oxid-${version}">
+            <arg value="checkout" />
+            <arg value="--quiet" />
+            <arg value="${version}" />
+        </exec>
+        <exec executable="git" dir="oxid-${version}">
+            <arg value="reset" />
+            <arg value="--hard" />
+        </exec>
+        <exec executable="sed" dir="oxid-${version}" passthru="true">
+            <arg value="-i" />
+            <arg value="--" />
+            <arg value="s/@symfony_env@/prod/g" />
+            <arg value="api/console" />
+        </exec>
+        <exec executable="sed" dir="oxid-${version}" passthru="true">
+            <arg value="-i" />
+            <arg value="--" />
+            <arg value="s/@symfony_env@/prod/g" />
+            <arg value="public/api.php" />
+        </exec>
+    </target>
+
+    <target name="composer">
+        <echo message="Installing API dependencies" />
+        <exec escape="false" dir="oxid-${version}" command="curl -LSs https://getcomposer.org/installer | php" />
+        <exec executable="php" dir="oxid-${version}" checkreturn="true">
+            <arg value="composer.phar" />
+            <arg value="install" />
+            <arg value="--prefer-dist" />
+            <arg value="--no-dev" />
+            <arg value="--optimize-autoloader" />
+            <arg value="--ignore-platform-reqs" />
+            <arg value="--no-interaction" />
+        </exec>
+    </target>
+
+    <target name="npm">
+        <echo message="Installing UI dependencies" />
+        <exec executable="npm" dir="oxid-${version}" checkreturn="true">
+            <arg value="install" />
+            <arg value="--no-optional" />
+        </exec>
+    </target>
+
+    <target name="build-prod">
+        <echo message="Compiling UI files" />
+        <exec executable="npm" dir="oxid-${version}" checkreturn="true">
+            <arg value="run" />
+            <arg value="build" />
+        </exec>
+    </target>
+
+    <target name="build-dev">
+        <echo message="Compiling UI files" />
+        <exec executable="npm" passthru="true" checkreturn="true">
+            <arg value="run" />
+            <arg value="build" />
+        </exec>
+    </target>
+
+    <target name="box-prod">
+        <echo message="Creating the .phar file" />
+        <exec escape="false" dir="oxid-${version}" command="curl -LSs https://github.com/humbug/box/releases/download/3.5.1/box.phar > box.phar" />
+        <exec executable="php" dir="oxid-${version}" checkreturn="true">
+            <arg value="box.phar" />
+            <arg value="compile" />
+        </exec>
+    </target>
+
+    <target name="box-dev">
+        <echo message="Creating the .phar file" />
+        <exec executable="box" checkreturn="true" passthru="true">
+            <arg value="compile" />
+        </exec>
+    </target>
+
+    <target name="cleanup">
+        <move file="oxid-${version}/oxid.phar" tofile="oxid.phar" overwrite="true"/>
+        <delete dir="oxid-${version}" />
+    </target>
+
+    <target name="version">
+        <exec executable="php" checkreturn="true">
+            <arg value="-r" />
+            <arg value="file_put_contents('oxid.version', json_encode(['version' => '${version}', 'sha1' => sha1_file('oxid.phar'), 'requires' => ['php' => '^5.5.9 || ^7']]));" />
+        </exec>
+    </target>
+</project>

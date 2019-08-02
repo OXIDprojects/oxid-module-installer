@@ -1,0 +1,21 @@
+{
+    "stub": "stub.php",
+    "main": false,
+    "chmod": "0755",
+    "directories": ["public", "src", "kernel"],
+    "files": [
+        "LICENSE"
+    ],
+    "blacklist": [
+        "node_modules"
+    ],
+    "finder": [
+        {
+            "name": "*",
+            "exclude": ["Tests", "tests"],
+            "in": "vendor"
+        }
+    ],
+    "git-version": "package_version",
+    "output": "public/oxid.phar"
+}
