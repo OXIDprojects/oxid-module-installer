@@ -3,6 +3,7 @@ import Vue from 'vue';
 import { store } from './_store';
 import { router } from './_helpers';
 import App from './app/App';
+import VueResource from 'vue-resource';
 
 import Header from './Components/Header_footer/Header.vue'
 import Footer from './Components/Header_footer/Footer.vue';
@@ -14,6 +15,8 @@ Vue.component('app-header', Header)
 Vue.component('app-footer', Footer)
 Vue.component('app-search', Search)
 Vue.component('app-packages', Packages)
+
+Vue.use(VueResource)
 
 new Vue({
     el: '#app',
