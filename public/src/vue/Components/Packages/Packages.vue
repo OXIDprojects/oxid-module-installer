@@ -4,21 +4,23 @@
 
         <div 
             class="oxid-packages"
-            v-for="(oxid_package,index) in packages.oxid"
-            :key="index"
+            v-for="(oxid_package) in packages.oxid"
+            :key="oxid_package.name"
         >
-            <h3>{{oxid_package.name}}</h3>
+            <h4>{{oxid_package.name}}</h4>
             <p>Version: {{oxid_package.version}}</p>
         </div>
+
+        <hr>
 
         <h2>Other Packages</h2>
 
         <div 
-            class="oxid-packages"
-            v-for="(other_package,other) in packages.other"
-            :key="other"
+            class="other-packages"
+            v-for="(other_package) in packages.other"
+            :key="other_package.name"
         >
-            <h3>{{other_package.name}}</h3>
+            <h4>{{other_package.name}}</h4>
             <p>Version: {{other_package.version}}</p>
         </div>
     </div>
