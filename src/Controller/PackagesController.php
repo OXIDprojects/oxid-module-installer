@@ -9,16 +9,16 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
+
 class PackagesController extends Controller
 {
 
     public function indexAction()
     {
-        $request = Request::createFromGlobals();
-        $search = $request->query->get('search');
-        $composerApi = new ComposerApi();
-        $result = $composerApi->search($search);
-        return new JsonResponse($result);
+        return new JsonResponse([
+            'status' => 'index',
+            'packages' => (new ComposerApi())->getRootPackages()
+        ]);
     }
 
     public function newAction()
