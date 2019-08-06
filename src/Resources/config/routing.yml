@@ -19,11 +19,11 @@ oxidcommunity_moduleinstaller_packages_new:
     defaults:
         _controller: "OxidCommunityModuleInstallerBundle:Packages:new"
 
-oxidcommunity_moduleinstaller_packages_show:
+oxidcommunity_moduleinstaller_packages_search:
     path: /oxid/moduleinstaller/packages/{item}/
-    methods: [GET]
+    methods: [POST]
     defaults:
-        _controller: "OxidCommunityModuleInstallerBundle:Packages:show"
+        _controller: "OxidCommunityModuleInstallerBundle:Packages:search"
     requirements:
         item: .+
 

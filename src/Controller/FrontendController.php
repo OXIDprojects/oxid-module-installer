@@ -15,7 +15,6 @@ class FrontendController extends Controller
     public function indexAction()
     {
         return $this->render('@OxidCommunityModuleInstaller/Index/index.html.twig', []);
-        die("<pre>" . __METHOD__ .":\n" . print_r('ASDASD', true));
     }
 
 }

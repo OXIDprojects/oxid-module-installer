@@ -1,6 +1,6 @@
 <template>
       <header>
-          HEADER
+          Oxid Installer
       </header>
 </template>
 

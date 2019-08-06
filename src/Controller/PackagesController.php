@@ -28,10 +28,15 @@ class PackagesController extends Controller
         ]);
     }
 
-    public function showAction($item)
+    public function searchAction($item)
     {
+        $composerApi = new ComposerApi();
+        $result = $composerApi->search($item);
+
         return new JsonResponse([
-            'status' => 'show package'
+            'status' => 'show package',
+            'term' => $item,
+            'packages' => $result
         ]);
     }
 

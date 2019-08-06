@@ -121,9 +121,9 @@ class ComposerApi
      */
     public function search($search, $type = null)
     {
-        if(defined('INDEXED_KERNEL')) {
-            return [];
-        }
+        // if(defined('INDEXED_KERNEL')) {
+        //     return [];
+        // }
         
         $input = new ArrayInput([]);
 
@@ -135,7 +135,11 @@ class ComposerApi
         
         // in Oxid EShop Path is missing
         if (empty(getenv('HOME'))) {
-            $path = getShopBasePath() . "/../";
+            if(function_exists('getShopBasePath')) {
+                $path = getShopBasePath() . '/../';
+            } else {
+                $path = dirname(__DIR__) . '/../';
+            }
             putenv("HOME=$path");
         }
         
@@ -149,8 +153,6 @@ class ComposerApi
         $composer->getEventDispatcher()->dispatch($commandEvent->getName(), $commandEvent);
         $onlyName = false;
         $flags = $onlyName ? RepositoryInterface::SEARCH_NAME : RepositoryInterface::SEARCH_FULLTEXT;
-        $results = $repos->search($search, $flags, $type);
-        return $results;
-
+        return $repos->search($search, $flags, $type);
     }
 }
