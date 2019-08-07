@@ -27,8 +27,13 @@ class ComposerApi
 
     public function getComposer()
     {
-        // die("<pre>" . __METHOD__ .":\n" . print_r(dirname(__DIR__), true));
-        return (new Factory())->createComposer(new NullIO(), '../composer.json', false, dirname(__DIR__) . '/..');
+        $Phar = \Phar::running();
+        if(empty($Phar)) {
+            $Phar = dirname(__DIR__);
+        }
+        
+        $Path = preg_replace('#phar://|[\\\/]oxid.phar.php|[\\\/]oxid.phar|[\\\/]src|[\\\/]public#is' , '', $Phar);
+        return (new Factory())->createComposer(new NullIO(), $Path . DIRECTORY_SEPARATOR . 'composer.json', false, $Path);
     }
 
     public function getRootPackages()

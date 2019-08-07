@@ -40,7 +40,7 @@ export default {
     },
     methods: {
         search() {
-            this.$http.post('/oxid/moduleinstaller/packages/' + this.formdata.term + '/')
+            this.$http.post(((location.href.indexOf('oxid.phar.php') !== -1 ? '/oxid.phar.php' : '')) + '/oxid/moduleinstaller/packages/' + this.formdata.term + '/')
                 .then( response => {
                     this.packages = response.body.packages
                 })

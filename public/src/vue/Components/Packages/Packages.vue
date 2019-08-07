@@ -35,7 +35,7 @@ export default {
     },
     methods: {
         fetchPackages() {
-            this.$http.get('/oxid/moduleinstaller/packages/')
+            this.$http.get(((location.href.indexOf('oxid.phar.php') !== -1 ? '/oxid.phar.php' : '')) + '/oxid/moduleinstaller/packages/')
                 .then( response => {
                     this.packages = response.body.packages
                 })
