@@ -40,6 +40,15 @@ Bei der Themenfindung ist uns relativ schnell klar geworden, dass diese beiden P
 
 Warum eine ausführbare Datei? Letztendlich ist das Ziel dieses Modules kein Modul im eigentlichen Sinne zu sein, sondern ein Programm wie Composer, geschrieben in PHP. PHAR ist ein PHP-Archiv und eignet sich deshalb besonders gut, um eine ausführbare Datei zu erzeugen.
 
+### Installieren & Nutzen
+
+1. composer.json hochladen
+2. Das Verzeichnis /public anlegen
+3. Phar-Datei in das Verzeichnis /public laden
+4. https://domain.tld/oxid.phar.php aufrufen
+
+**Hinweis:** In der Entwicklungsphase wird keine PHAR-Datei zur Verfügung gestellt, die Datei muss wie weiter unten beschrieben von jedem selbst erzeugt werden.
+
 ### Vorteile
 
 - Nur eine Datei muss hochgeladen werden
