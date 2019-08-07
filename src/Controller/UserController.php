@@ -4,10 +4,11 @@ declare (strict_types = 1);
 
 namespace OxidCommunity\ModuleInstaller\Controller;
 
-use OxidCommunity\ModuleInstaller\Composer\ComposerApi;
+use Lcobucci\JWT\Builder;
+use Lcobucci\JWT\Parser;
+use Lcobucci\JWT\ValidationData;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Request;
 
 class UserController extends Controller
 {
@@ -18,22 +19,27 @@ class UserController extends Controller
             'password' => 'test',
             'firstName' => 'Sascha',
             'lastName' => 'Weidner',
-        ]
+        ],
     ];
 
     public function authAction()
     {
         $Data = json_decode(file_get_contents('php://input'), true);
-        foreach($this->users as $user) {
-            if(
+        foreach ($this->users as $user) {
+            if (
                 $user['username'] === $Data['username'] &&
                 $user['password'] === $Data['password']
             ) {
-                $user['token'] = 'fake-jwt-token';
-                die(json_encode($user));
+                $token = (new Builder())->setIssuer('oxid-moduleinstaller')
+                    ->setAudience('oxid-moduleinstaller')
+                    ->setIssuedAt(time())
+                    ->setExpiration(time() + 3600)
+                    ->getToken();
+                $user['token'] = '' . $token;
+                return new JsonResponse($user);
             }
-            die(json_encode(['error' => 'Username or password is incorrect!']));
         }
+        return new JsonResponse(['error' => 'Username or password is incorrect!']);
     }
 
     public function jwtAction()

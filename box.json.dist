@@ -8,7 +8,8 @@
     ],
     "blacklist": [
         "node_modules",
-        "oxid.phar.php"
+        "oxid.phar.php",
+        "oxcomposer"
     ],
     "finder": [
         {

@@ -32,7 +32,7 @@ class ComposerApi
             $Phar = dirname(__DIR__);
         }
         
-        $Path = preg_replace('#phar://|[\\\/]oxid.phar.php|[\\\/]oxid.phar|[\\\/]src|[\\\/]public#is' , '', $Phar);
+        $Path = preg_replace('#phar://|[\\\/]oxid.phar.php|[\\\/]oxid.phar|[\\\/]web|[\\\/]src|[\\\/]public#is' , '', $Phar);
         return (new Factory())->createComposer(new NullIO(), $Path . DIRECTORY_SEPARATOR . 'composer.json', false, $Path);
     }
 

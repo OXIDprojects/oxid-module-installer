@@ -27,6 +27,7 @@
 </template>
 
 <script>
+import { authHeader } from '../../_helpers';
 export default {
     data() {
         return {
@@ -34,10 +35,24 @@ export default {
         };
     },
     methods: {
+        logout() {
+            localStorage.removeItem('user');
+        },
         fetchPackages() {
-            this.$http.get(((location.href.indexOf('oxid.phar.php') !== -1 ? '/oxid.phar.php' : '')) + '/oxid/moduleinstaller/packages/')
+            
+            const requestOptions = {
+                method: 'GET',
+                headers: authHeader()
+            };
+
+            var that = this;
+
+            this.$http.get(((location.href.indexOf('oxid.phar.php') !== -1 ? '/oxid.phar.php' : '')) + '/oxid/moduleinstaller/packages/', requestOptions)
                 .then( response => {
                     this.packages = response.body.packages
+                }).catch(() => {
+                    that.logout();
+                    location.reload(true);
                 })
         }
     },

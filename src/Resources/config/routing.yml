@@ -6,6 +6,8 @@ oxidcommunity_moduleinstaller_auth:
 
 oxidcommunity_moduleinstaller_auth_jwt:
     path: /oxid/moduleinstaller/auth/check/
+    options:
+        auth: true
     defaults:
         _controller: "OxidCommunityModuleInstallerBundle:User:jwt"
 
@@ -46,6 +48,8 @@ oxidcommunity_moduleinstaller_packages_delete:
 oxidcommunity_moduleinstaller_packages:
     path: /oxid/moduleinstaller/packages/
     methods: [GET]
+    options:
+        auth: true
     defaults:
         _controller: "OxidCommunityModuleInstallerBundle:Packages:index"
 
