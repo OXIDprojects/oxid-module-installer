@@ -1,7 +1,10 @@
 <template>
     <div class="container">
         <app-header></app-header>
+        <hr>
         <app-search></app-search>
+        <hr>
+        <app-repositories></app-repositories>
         <hr>
         <app-packages></app-packages>
         <app-footer></app-footer>

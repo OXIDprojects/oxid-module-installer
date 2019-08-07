@@ -10,11 +10,13 @@ import Footer from './Components/Header_footer/Footer.vue';
 
 import Search from './Components/Search.vue';
 import Packages from './Components/Packages/Packages.vue';
+import Repositories from './Components/Repositories/Repositories.vue';
 
 Vue.component('app-header', Header)
 Vue.component('app-footer', Footer)
 Vue.component('app-search', Search)
 Vue.component('app-packages', Packages)
+Vue.component('app-repositories', Repositories)
 
 Vue.use(VueResource)
 

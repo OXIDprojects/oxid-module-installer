@@ -36,6 +36,22 @@ class ComposerApi
         return (new Factory())->createComposer(new NullIO(), $Path . DIRECTORY_SEPARATOR . 'composer.json', false, $Path);
     }
 
+    public function getRepositories()
+    {
+        $arrRepository = [];
+        $Repositories = $this->getComposer()->getRepositoryManager()->getRepositories();
+        foreach($Repositories as $Repository) {
+            $config = $Repository->getRepoConfig();
+            if($config['url'] === 'https://repo.packagist.org') {
+                continue;
+            }
+
+            $arrRepository[] = $config;
+        }
+        
+        return $arrRepository;
+    }
+
     public function getRootPackages()
     {
         $composer = $this->getComposer();

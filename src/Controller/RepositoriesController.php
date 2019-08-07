@@ -4,6 +4,7 @@ declare (strict_types = 1);
 
 namespace OxidCommunity\ModuleInstaller\Controller;
 
+use OxidCommunity\ModuleInstaller\Composer\ComposerApi;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
@@ -13,7 +14,8 @@ class RepositoriesController extends Controller
     public function indexAction()
     {
         return new JsonResponse([
-            'status' => 'list all repositories'
+            'status' => 'index',
+            'repositories' => (new ComposerApi())->getRepositories()
         ]);
     }
 

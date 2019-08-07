@@ -8,7 +8,12 @@
             :key="oxid_package.name"
         >
             <h4>{{oxid_package.name}}</h4>
-            <p>Version: {{oxid_package.version}}</p>
+            <p>
+                Version: {{oxid_package.version}} 
+                <button class="btn btn-info">Edit</button>
+                <button class="btn btn-warning">Update</button>
+                <button class="btn btn-error">Delete</button>
+            </p>
         </div>
 
         <hr>
@@ -21,7 +26,12 @@
             :key="other_package.name"
         >
             <h4>{{other_package.name}}</h4>
-            <p>Version: {{other_package.version}}</p>
+            <p>
+                Version: {{other_package.version}}
+                <button class="btn btn-info">Edit</button>
+                <button class="btn btn-warning">Update</button>
+                <button class="btn btn-error">Delete</button>
+            </p>
         </div>
     </div>
 </template>
