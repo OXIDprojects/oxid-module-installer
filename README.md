@@ -1,5 +1,11 @@
 # Oxid hackathon 2019, Symfony & Oneclick-Installer
 
+## Alpha Release
+
+Dieses Programm ist in der Entwicklungsphase. Die Angaben in der Eingabemaske werden direkt und unwiederbringlich in die Datei `composer.json` geschrieben. Sie sollten diese Modul nur verwenden, wenn Sie wissen was sie tun.
+
+Verwenden Sie dieses Programm **unter keinen Umständen** Live!
+
 ## Testen / Ausführen
 
 ### Installieren
