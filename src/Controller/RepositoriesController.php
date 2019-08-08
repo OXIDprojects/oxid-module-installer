@@ -21,8 +21,11 @@ class RepositoriesController extends Controller
 
     public function newAction()
     {
+        $Data = json_decode(file_get_contents('php://input'), true);
+
         return new JsonResponse([
-            'status' => 'new repository'
+            'status' => 'new repository',
+            'repositories' => (new ComposerApi())->addRepository($Data['repository'])
         ]);
     }
 
@@ -42,8 +45,11 @@ class RepositoriesController extends Controller
 
     public function deleteAction()
     {
+        $Data = json_decode(file_get_contents('php://input'), true);
+
         return new JsonResponse([
-            'status' => 'delete repository'
+            'status' => 'new repository',
+            'repositories' => (new ComposerApi())->removeRepository($Data['repository'])
         ]);
     }
 

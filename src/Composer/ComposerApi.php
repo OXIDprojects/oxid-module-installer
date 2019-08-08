@@ -6,9 +6,10 @@ namespace OxidCommunity\ModuleInstaller\Composer;
 
 use Composer\Factory;
 use Composer\IO\NullIO;
-use Composer\IO\BufferIO;
 use Composer\Plugin\CommandEvent;
 use Composer\Plugin\PluginEvents;
+use Composer\Json\JsonFile;
+use Composer\Config\JsonConfigSource;
 use Composer\Repository\CompositeRepository;
 use Composer\Repository\PlatformRepository;
 use Composer\Repository\RepositoryInterface;
@@ -23,17 +24,86 @@ use Composer\Repository\ArrayRepository;
 
 class ComposerApi
 {
-    
+    private static $composer = null;
+    private static $path = null;
 
-    public function getComposer()
+    public function getRootPath($force = false)
     {
+        if(!$force && !empty(static::$path)) {
+            return static::$path;
+        }
+
         $Phar = \Phar::running();
         if(empty($Phar)) {
             $Phar = dirname(__DIR__);
         }
         
-        $Path = preg_replace('#phar://|[\\\/]oxid.phar.php|[\\\/]oxid.phar|[\\\/]web|[\\\/]src|[\\\/]public#is' , '', $Phar);
-        return (new Factory())->createComposer(new NullIO(), $Path . DIRECTORY_SEPARATOR . 'composer.json', false, $Path);
+        static::$path = preg_replace('#phar://|[\\\/]oxid.phar.php|[\\\/]oxid.phar|[\\\/]web|[\\\/]src|[\\\/]public#is' , '', $Phar);
+        return static::$path;
+    }
+
+    public function getRootComposerJson()
+    {
+        return $this->getRootPath() . DIRECTORY_SEPARATOR . 'composer.json';
+    }
+
+    public function getComposer()
+    {
+        if(!empty(static::$composer)) {
+            return static::$composer;
+        }
+        static::$composer = (new Factory())->createComposer(new NullIO(), $this->getRootComposerJson(), false, $this->getRootPath());
+
+        return static::$composer;
+    }
+
+    public function removeRepository(Array $Repository)
+    {
+        $composer = $this->getComposer();
+        $configFile = new JsonFile($this->getRootComposerJson(), null, new NullIO());
+        
+        $Repositories = $composer->getConfig()->getRepositories();
+        $DeletableRepo = [];
+        foreach($Repositories as $key => &$repo) {
+            if($repo['url'] === $Repository['url']) {
+                $DeletableRepo = [$key => false];
+            }
+        }
+
+        $composerJson = $configFile->read();
+        foreach($composerJson['repositories'] as $key => &$repo) {
+            if($repo['url'] === $Repository['url']) {
+                $json = new JsonConfigSource($configFile);
+                $json->removeRepository($key);
+            }
+        }
+        $composer->getConfig()->merge(['repositories' => $DeletableRepo]);
+        // die("<pre>" . __METHOD__ .":\n" . print_r($composer->getConfig()->getRepositories(), true));
+        unset($composerJson['repositories']['packagist.org']);
+        return $composerJson['repositories'];
+    }
+
+    public function addRepository(Array $Repository)
+    {
+        $composer = $this->getComposer();
+        $composer->getConfig()->merge(['repositories' => [$Repository]]);
+        $configFile = new JsonFile($this->getRootComposerJson(), null, new NullIO());
+        
+        $composerJson = $configFile->read();
+        foreach($composerJson['repositories'] as $key => $repo) {
+            if($repo['url'] === $Repository['url']) {
+                unset($composerJson['repositories']['packagist.org']);
+                return $composerJson['repositories'];
+            }
+        }
+
+        $json = new JsonConfigSource($configFile);
+        $json->addRepository(count($composerJson['repositories']), $Repository);
+
+        $composerJson['repositories'] = $composer->getConfig()->getRepositories();
+
+        unset($composerJson['repositories']['packagist.org']);
+        return $composerJson['repositories'];
     }
 
     public function getRepositories()

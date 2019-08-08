@@ -5,8 +5,6 @@ declare (strict_types = 1);
 namespace OxidCommunity\ModuleInstaller\Controller;
 
 use Lcobucci\JWT\Builder;
-use Lcobucci\JWT\Parser;
-use Lcobucci\JWT\ValidationData;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 

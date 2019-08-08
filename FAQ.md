@@ -9,3 +9,7 @@ Means u want to render template `Path/index.html.twig` insteat of `@BundleName/P
 ## Twig output has crazy whitespaces and tabs
 
 U have to use valid html. Text written directly into BODY will be wrapped with PRE-Tag.
+
+## Package / Klass not found in PHAR file
+
+Try to run `composer update` before using `phing debug`. 

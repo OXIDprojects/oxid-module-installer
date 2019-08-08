@@ -3,7 +3,7 @@
         <h2>Oxid Packages</h2>
 
         <div 
-            class="oxid-packages"
+            class="package-container oxid-packages"
             v-for="(oxid_package) in packages.oxid"
             :key="oxid_package.name"
         >
@@ -21,7 +21,7 @@
         <h2>Other Packages</h2>
 
         <div 
-            class="other-packages"
+            class="package-container other-packages"
             v-for="(other_package) in packages.other"
             :key="other_package.name"
         >
@@ -35,6 +35,17 @@
         </div>
     </div>
 </template>
+
+<style>
+.package-container {
+    background: #f9f9f9;
+    padding: 10px 20px 1px;
+}
+
+.package-container + .package-container {
+    margin-top: 20px;
+}
+</style>
 
 <script>
 import { authHeader } from '../../_helpers';

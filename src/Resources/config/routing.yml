@@ -61,18 +61,10 @@ oxidcommunity_moduleinstaller_repositories_new:
     path: /oxid/moduleinstaller/repositories/
     methods: [POST]
     defaults:
-        _controller: "OxidCommunityModuleInstallerBundle:Packages:new"
-
-oxidcommunity_moduleinstaller_repositories_show:
-    path: /oxid/moduleinstaller/repositories/{item}/
-    methods: [GET]
-    defaults:
-        _controller: "OxidCommunityModuleInstallerBundle:Repositories:show"
-    requirements:
-        item: .+
+        _controller: "OxidCommunityModuleInstallerBundle:Repositories:new"
 
 oxidcommunity_moduleinstaller_repositories_update:
-    path: /oxid/moduleinstaller/repositories/{item}/
+    path: /oxid/moduleinstaller/repositories/
     methods: [PUT]
     defaults:
         _controller: "OxidCommunityModuleInstallerBundle:Repositories:update"
@@ -80,12 +72,10 @@ oxidcommunity_moduleinstaller_repositories_update:
         item: .+
 
 oxidcommunity_moduleinstaller_repositories_delete:
-    path: /oxid/moduleinstaller/repositories/{item}/
+    path: /oxid/moduleinstaller/repositories/
     methods: [DELETE]
     defaults:
         _controller: "OxidCommunityModuleInstallerBundle:Repositories:delete"
-    requirements:
-        item: .+
 
 oxidcommunity_moduleinstaller_repositories:
     path: /oxid/moduleinstaller/repositories/

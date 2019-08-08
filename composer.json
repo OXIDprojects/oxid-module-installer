@@ -1,57 +1,57 @@
 {
-  "name": "oxid-community/moduleinstaller",
-  "description": "",
-  "type": "oxideshop-module",
-  "keywords": [
-    "oxid",
-    "modules",
-    "installer"
-  ],
-  "license": [
-    "GPL-3.0"
-  ],
-  "extra": {
-    "oxid-kernel-plugin": {
-      "oxid-community/symfony-security-bundle": "OxidCommunity\\SecurityBundle\\OxidCommunitySecurityBundle",
-      "jwt": "Lexik\\Bundle\\JWTAuthenticationBundle\\LexikJWTAuthenticationBundle",
-      "twig": "Symfony\\Bundle\\TwigBundle\\TwigBundle",
-      "oxid-community/moduleinstaller": "OxidCommunity\\ModuleInstaller\\OxidCommunityModuleInstallerBundle"
-    }
-  },
-  "scripts": {
-    "post-install-cmd": [
-      "OxidCommunity\\SymfonyKernel\\Composer\\Plugin::registrateRootPlugin"
+    "name": "oxid-community/moduleinstaller",
+    "description": "",
+    "type": "oxideshop-module",
+    "keywords": [
+        "oxid",
+        "modules",
+        "installer"
     ],
-    "post-update-cmd": [
-      "OxidCommunity\\SymfonyKernel\\Composer\\Plugin::registrateRootPlugin"
+    "license": [
+        "GPL-3.0"
     ],
-    "server": "php -S localhost:8088 -t public "
-  },
-  "require": {
-    "php": ">=7.0",
-    "oxid-community/symfony-kernel": "*",
-    "oxid-community/symfony-security-bundle": "*",
-    "composer/composer": "^1.9",
-    "symfony/twig-bundle": "^3.2",
-    "lexik/jwt-authentication-bundle": "^2.4.4",
-    "symfony/dotenv": "^4.3"
-  },
-  "autoload": {
-    "psr-4": {
-      "OxidCommunity\\ModuleInstaller\\": "src/"
+    "extra": {
+        "oxid-kernel-plugin": {
+            "oxid-community/symfony-security-bundle": "OxidCommunity\\SecurityBundle\\OxidCommunitySecurityBundle",
+            "jwt": "Lexik\\Bundle\\JWTAuthenticationBundle\\LexikJWTAuthenticationBundle",
+            "twig": "Symfony\\Bundle\\TwigBundle\\TwigBundle",
+            "oxid-community/moduleinstaller": "OxidCommunity\\ModuleInstaller\\OxidCommunityModuleInstallerBundle"
+        }
     },
-    "exclude-from-classmap": [
-      "src/Resources/oxid"
+    "scripts": {
+        "post-install-cmd": [
+            "OxidCommunity\\SymfonyKernel\\Composer\\Plugin::registrateRootPlugin"
+        ],
+        "post-update-cmd": [
+            "OxidCommunity\\SymfonyKernel\\Composer\\Plugin::registrateRootPlugin"
+        ],
+        "server": "php -S localhost:8088 -t public "
+    },
+    "require": {
+        "php": ">=7.0",
+        "oxid-community/symfony-kernel": "*",
+        "oxid-community/symfony-security-bundle": "*",
+        "composer/composer": "^1.9",
+        "symfony/twig-bundle": "^3.2",
+        "lexik/jwt-authentication-bundle": "^2.4.4",
+        "symfony/dotenv": "^4.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "OxidCommunity\\ModuleInstaller\\": "src/"
+        },
+        "exclude-from-classmap": [
+            "src/Resources/oxid"
+        ]
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/OXIDprojects/oxid-symfony-kernel"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/OXIDprojects/oxid-security-bundle"
+        }
     ]
-  },
-  "repositories": [
-    {
-      "type": "vcs",
-      "url": "https://github.com/OXIDprojects/oxid-symfony-kernel"
-    },
-    {
-      "type": "vcs",
-      "url": "https://github.com/OXIDprojects/oxid-security-bundle"
-    }
-  ]
 }
