@@ -64,21 +64,23 @@ class ComposerApi
         
         $Repositories = $composer->getConfig()->getRepositories();
         $DeletableRepo = [];
-        foreach($Repositories as $key => &$repo) {
+        foreach($Repositories as $key => $repo) {
             if($repo['url'] === $Repository['url']) {
                 $DeletableRepo = [$key => false];
             }
         }
+        unset($repo);
 
         $composerJson = $configFile->read();
         foreach($composerJson['repositories'] as $key => &$repo) {
             if($repo['url'] === $Repository['url']) {
                 $json = new JsonConfigSource($configFile);
                 $json->removeRepository($key);
+                unset($composerJson['repositories'][$key]);
             }
         }
+        unset($repo);
         $composer->getConfig()->merge(['repositories' => $DeletableRepo]);
-        // die("<pre>" . __METHOD__ .":\n" . print_r($composer->getConfig()->getRepositories(), true));
         unset($composerJson['repositories']['packagist.org']);
         return $composerJson['repositories'];
     }

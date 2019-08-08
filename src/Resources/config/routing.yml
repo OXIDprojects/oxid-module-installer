@@ -24,26 +24,28 @@ oxidcommunity_moduleinstaller_packages_new:
 oxidcommunity_moduleinstaller_packages_search:
     path: /oxid/moduleinstaller/packages/{item}/
     methods: [POST]
+    options:
+        auth: true
     defaults:
         _controller: "OxidCommunityModuleInstallerBundle:Packages:search"
     requirements:
         item: .+
 
 oxidcommunity_moduleinstaller_packages_update:
-    path: /oxid/moduleinstaller/packages/{item}/
+    path: /oxid/moduleinstaller/packages/
     methods: [PUT]
+    options:
+        auth: true
     defaults:
         _controller: "OxidCommunityModuleInstallerBundle:Packages:update"
-    requirements:
-        item: .+
 
 oxidcommunity_moduleinstaller_packages_delete:
-    path: /oxid/moduleinstaller/packages/{item}/
+    path: /oxid/moduleinstaller/packages/
     methods: [DELETE]
+    options:
+        auth: true
     defaults:
         _controller: "OxidCommunityModuleInstallerBundle:Packages:delete"
-    requirements:
-        item: .+
 
 oxidcommunity_moduleinstaller_packages:
     path: /oxid/moduleinstaller/packages/
@@ -60,12 +62,16 @@ oxidcommunity_moduleinstaller_packages:
 oxidcommunity_moduleinstaller_repositories_new:
     path: /oxid/moduleinstaller/repositories/
     methods: [POST]
+    options:
+        auth: true
     defaults:
         _controller: "OxidCommunityModuleInstallerBundle:Repositories:new"
 
 oxidcommunity_moduleinstaller_repositories_update:
     path: /oxid/moduleinstaller/repositories/
     methods: [PUT]
+    options:
+        auth: true
     defaults:
         _controller: "OxidCommunityModuleInstallerBundle:Repositories:update"
     requirements:
@@ -74,12 +80,16 @@ oxidcommunity_moduleinstaller_repositories_update:
 oxidcommunity_moduleinstaller_repositories_delete:
     path: /oxid/moduleinstaller/repositories/
     methods: [DELETE]
+    options:
+        auth: true
     defaults:
         _controller: "OxidCommunityModuleInstallerBundle:Repositories:delete"
 
 oxidcommunity_moduleinstaller_repositories:
     path: /oxid/moduleinstaller/repositories/
     methods: [GET]
+    options:
+        auth: true
     defaults:
         _controller: "OxidCommunityModuleInstallerBundle:Repositories:index"
 

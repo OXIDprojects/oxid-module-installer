@@ -8,12 +8,18 @@
             :key="oxid_package.name"
         >
             <h4>{{oxid_package.name}}</h4>
-            <p>
-                Version: {{oxid_package.version}} 
-                <button class="btn btn-info">Edit</button>
-                <button class="btn btn-warning">Update</button>
-                <button class="btn btn-error">Delete</button>
-            </p>
+            <div>
+                <div v-if="oxid_package.edit !== undefined && oxid_package.edit">
+                    Version: <input type="text" v-model="oxid_package.version">
+                    <button @click="edit(oxid_package)" class="btn btn-info">Edit</button>
+                    <button @click="remove(oxid_package)" class="btn btn-error">Delete</button>
+                </div>
+                <div v-else>
+                    Version: {{oxid_package.version}}
+                    <button @click="edit(oxid_package)" class="btn btn-info">Edit</button>
+                    <button @click="remove(oxid_package)" class="btn btn-error">Delete</button>
+                </div>
+            </div>
         </div>
 
         <hr>
@@ -26,12 +32,18 @@
             :key="other_package.name"
         >
             <h4>{{other_package.name}}</h4>
-            <p>
-                Version: {{other_package.version}}
-                <button class="btn btn-info">Edit</button>
-                <button class="btn btn-warning">Update</button>
-                <button class="btn btn-error">Delete</button>
-            </p>
+            <div>
+                <div v-if="other_package.edit !== undefined && other_package.edit">
+                    Version: <input type="text" v-model="other_package.version">
+                    <button @click="edit(other_package)" class="btn btn-info">Edit</button>
+                    <button @click="remove(other_package)" class="btn btn-error">Delete</button>
+                </div>
+                <div v-else>
+                    Version: {{other_package.version}}
+                    <button @click="edit(other_package)" class="btn btn-info">Edit</button>
+                    <button @click="remove(other_package)" class="btn btn-error">Delete</button>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -39,7 +51,7 @@
 <style>
 .package-container {
     background: #f9f9f9;
-    padding: 10px 20px 1px;
+    padding: 10px 20px;
 }
 
 .package-container + .package-container {
@@ -48,7 +60,7 @@
 </style>
 
 <script>
-import { authHeader } from '../../_helpers';
+import { authHeader } from "../../_helpers";
 export default {
     data() {
         return {
@@ -75,6 +87,32 @@ export default {
                     that.logout();
                     location.reload(true);
                 })
+        },
+        edit(composer_package) {
+            composer_package.edit = true;
+        },
+        remove(composer_package) {
+            const requestOptions = {
+                method: "DELETE",
+                headers: authHeader()
+            };
+
+            var that = this;
+
+            this.$http
+                .delete(
+                    (location.href.indexOf("oxid.phar.php") !== -1
+                    ? "/oxid.phar.php"
+                    : "") + "/oxid/moduleinstaller/packages/",
+                    {body: {composer_package: composer_package}, headers: authHeader()},
+                    requestOptions
+                )
+                .then(response => {
+                })
+                .catch(() => {
+                    that.logout();
+                    location.reload(true);
+                });
         }
     },
     created() {

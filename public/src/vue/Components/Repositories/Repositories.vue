@@ -35,11 +35,12 @@
 
     <div class="repositories" v-for="(repository) in repositories" :key="repository.url">
       <h4>{{repository.url}}</h4>
-      <p>Type: {{repository.type}}</p>
       <div>
-        <button class="btn btn-info">Edit</button>
+        Type: {{repository.type}}
+        <button v-b-modal.repository-modal class="btn btn-info">Edit</button>
         <button @click="removeRepository(repository)" class="btn btn-error">Delete</button>
       </div>
+      
     </div>
 
     <b-button class="btn btn-info mt-4" v-b-modal.repository-modal>Repository hinzufügen</b-button>
@@ -124,18 +125,15 @@ export default {
 
         var that = this;
 
-        console.log({body: {repository: repository}});
-
         this.$http
             .delete(
                 (location.href.indexOf("oxid.phar.php") !== -1
                 ? "/oxid.phar.php"
                 : "") + "/oxid/moduleinstaller/repositories/",
-                {body: {repository: repository}},
+                {body: {repository: repository}, headers: authHeader()},
                 requestOptions
             )
             .then(response => {
-                console.log(response)
             })
             .catch(() => {
                 that.logout();

@@ -38,10 +38,6 @@ Alle Routen werden in der Datei `src/Resources/config/routing.yml` notiert. Dies
 
 `http://localhost:8088/oxid/moduleinstaller/repositories/`
 
-## Vorgang & Überlegungen
-
-Bei der Themenfindung ist uns relativ schnell klar geworden, dass diese beiden Projekte zusammen entwickelt werden müssen. Der Installer, um die Benutzerfreundlichkeit zu erhöhen und den Kernel der die Pakete entgegen nimmt und bei Bedarf in Oxid integriert und Bundles ohne aufwand nutzbar macht.
-
 ## Ausführbare Datei (PHAR)
 
 Warum eine ausführbare Datei? Letztendlich ist das Ziel dieses Modules kein Modul im eigentlichen Sinne zu sein, sondern ein Programm wie Composer, geschrieben in PHP. PHAR ist ein PHP-Archiv und eignet sich deshalb besonders gut, um eine ausführbare Datei zu erzeugen.
@@ -86,6 +82,10 @@ phing debug
 ```
 phing
 ```
+
+## Vorgang & Überlegungen beim Hackathon 2019
+
+Bei der Themenfindung ist uns relativ schnell klar geworden, dass diese beiden Projekte zusammen entwickelt werden müssen. Der Installer, um die Benutzerfreundlichkeit zu erhöhen und den Kernel der die Pakete entgegen nimmt und bei Bedarf in Oxid integriert und Bundles ohne aufwand nutzbar macht.
 
 ## Warum ein Composer installer?
 
