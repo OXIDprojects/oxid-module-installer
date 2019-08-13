@@ -44,14 +44,5 @@
             "src/Resources/oxid"
         ]
     },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/OXIDprojects/oxid-symfony-kernel"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/OXIDprojects/oxid-security-bundle"
-        }
-    ]
+    "repositories": []
 }

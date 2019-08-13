@@ -1,23 +1,25 @@
 <template>
     <div id="packages">
+
         <h2>Oxid Packages</h2>
 
         <div 
             class="package-container oxid-packages"
             v-for="(oxid_package) in packages.oxid"
             :key="oxid_package.name"
+            v-bind:class="{ delete: (oxid_package.type === 'delete'), update: (oxid_package.type === 'update'), edit: (oxid_package.type === 'edit') }"
         >
             <h4>{{oxid_package.name}}</h4>
             <div>
-                <div v-if="oxid_package.edit !== undefined && oxid_package.edit">
+                <div v-if="oxid_package.type !== undefined && oxid_package.type === 'edit'">
                     Version: <input type="text" v-model="oxid_package.version">
-                    <button @click="edit(oxid_package)" class="btn btn-info">Edit</button>
-                    <button @click="remove(oxid_package)" class="btn btn-error">Delete</button>
+                    <button @click="update({item: oxid_package, type: 'update'})" class="btn btn-info">Update</button>
+                    <button @click="addToStack({item: oxid_package, type: 'delete'})" class="btn btn-error">Delete</button>
                 </div>
                 <div v-else>
                     Version: {{oxid_package.version}}
-                    <button @click="edit(oxid_package)" class="btn btn-info">Edit</button>
-                    <button @click="remove(oxid_package)" class="btn btn-error">Delete</button>
+                    <button @click="edit({item: oxid_package, type: 'edit'})" class="btn btn-info">Edit</button>
+                    <button @click="addToStack({item: oxid_package, type: 'delete'})" class="btn btn-error">Delete</button>
                 </div>
             </div>
         </div>
@@ -30,18 +32,19 @@
             class="package-container other-packages"
             v-for="(other_package) in packages.other"
             :key="other_package.name"
+            v-bind:class="{ delete: (other_package.type === 'delete'), update: (other_package.type === 'update'), edit: (other_package.type === 'edit') }"
         >
             <h4>{{other_package.name}}</h4>
             <div>
-                <div v-if="other_package.edit !== undefined && other_package.edit">
+                <div v-if="other_package.type !== undefined && other_package.type === 'edit'">
                     Version: <input type="text" v-model="other_package.version">
-                    <button @click="edit(other_package)" class="btn btn-info">Edit</button>
-                    <button @click="remove(other_package)" class="btn btn-error">Delete</button>
+                    <button @click="update({item: other_package, type: 'update'})" class="btn btn-info">Update</button>
+                    <button @click="addToStack({item: other_package, type: 'delete'})" class="btn btn-error">Delete</button>
                 </div>
                 <div v-else>
                     Version: {{other_package.version}}
-                    <button @click="edit(other_package)" class="btn btn-info">Edit</button>
-                    <button @click="remove(other_package)" class="btn btn-error">Delete</button>
+                    <button @click="edit({item: other_package, type: 'update'})" class="btn btn-info">Edit</button>
+                    <button @click="addToStack({item: other_package, type: 'delete'})" class="btn btn-error">Delete</button>
                 </div>
             </div>
         </div>
@@ -57,66 +60,43 @@
 .package-container + .package-container {
     margin-top: 20px;
 }
+.delete {
+    background: #fcc
+}
+.update {
+    background: #ccf
+}
+.edit {
+    background: #c9c9c9
+}
 </style>
 
 <script>
+import { mapActions } from "vuex";
 import { authHeader } from "../../_helpers";
+
 export default {
     data() {
         return {
-            packages: {oxid:null,other:null}
         };
     },
     methods: {
         logout() {
             localStorage.removeItem('user');
         },
-        fetchPackages() {
-            
-            const requestOptions = {
-                method: 'GET',
-                headers: authHeader()
-            };
-
-            var that = this;
-
-            this.$http.get(((location.href.indexOf('oxid.phar.php') !== -1 ? '/oxid.phar.php' : '')) + '/oxid/moduleinstaller/packages/', requestOptions)
-                .then( response => {
-                    this.packages = response.body.packages
-                }).catch(() => {
-                    that.logout();
-                    location.reload(true);
-                })
-        },
-        edit(composer_package) {
-            composer_package.edit = true;
-        },
-        remove(composer_package) {
-            const requestOptions = {
-                method: "DELETE",
-                headers: authHeader()
-            };
-
-            var that = this;
-
-            this.$http
-                .delete(
-                    (location.href.indexOf("oxid.phar.php") !== -1
-                    ? "/oxid.phar.php"
-                    : "") + "/oxid/moduleinstaller/packages/",
-                    {body: {composer_package: composer_package}, headers: authHeader()},
-                    requestOptions
-                )
-                .then(response => {
-                })
-                .catch(() => {
-                    that.logout();
-                    location.reload(true);
-                });
+        ...mapActions('packages', [
+            'addToStack',
+            'edit',
+            'update'
+        ])
+    },
+    computed: {
+        packages () {
+            return this.$store.state.packages.all;
         }
     },
     created() {
-        this.fetchPackages();
+        this.$store.dispatch('packages/getAll');
     }
 }
 </script>

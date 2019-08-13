@@ -8,6 +8,7 @@
         <hr>
         <app-packages></app-packages>
         <app-footer></app-footer>
+        <app-packages-site></app-packages-site>
     </div>
 </template>
 

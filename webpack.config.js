@@ -49,11 +49,5 @@ module.exports = {
     })],
     devServer: {
         historyApiFallback: true
-    },
-    externals: {
-        // global app config object
-        config: JSON.stringify({
-            apiUrl: '/oxid/moduleinstaller/auth/'
-        })
     }
 }

@@ -1,5 +1,4 @@
-import config from 'config';
-import { authHeader } from '../_helpers';
+import { authHeader, config } from '../_helpers';
 
 export const userService = {
     login,
@@ -14,11 +13,10 @@ function login(username, password) {
         body: JSON.stringify({ username, password })
     };
 
-    return fetch(((location.href.indexOf('oxid.phar.php') !== -1 ? '/oxid.phar.php' : '')) + `${config.apiUrl}`, requestOptions)
+    return fetch(`${config().apiUrl}auth/`, requestOptions)
         .then(handleResponse)
         .then(user => {
             // login successful if there's a jwt token in the response
-            console.log(user);
             if (user.token) {
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
                 localStorage.setItem('user', JSON.stringify(user));
@@ -39,16 +37,15 @@ function getAll() {
         headers: authHeader()
     };
 
-    console.log(requestOptions);
-    return fetch(((location.href.indexOf('oxid.phar.php') !== -1 ? '/oxid.phar.php' : '')) + `${config.apiUrl}check/`, requestOptions).then(handleResponse);
+    return fetch(`${config().apiUrl}auth/check/`, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {
     return response.text().then(text => {
         const data = text && JSON.parse(text);
         if (!response.ok) {
-            if (response.status === 401) {
-                // auto logout if 401 response returned from api
+            if (response.status === 401 || response.status === 403) {
+                // auto logout if 401|403 response returned from api
                 logout();
                 location.reload(true);
             }

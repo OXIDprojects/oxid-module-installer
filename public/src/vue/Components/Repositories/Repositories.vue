@@ -63,7 +63,7 @@ import { authHeader } from "../../_helpers";
 export default {
   data() {
     return {
-      repositories: {},
+      // repositories: {},
       repository_form: {
         url: "",
         type: ""
@@ -176,8 +176,14 @@ export default {
         });
     }
   },
+  computed: {
+    repositories () {
+      return this.$store.state.repositories.all;
+    }
+  },
   created() {
-    this.fetchRepositories();
+    // this.fetchRepositories();
+    this.$store.dispatch('repositories/getAll');
   }
 };
 </script>
