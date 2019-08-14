@@ -39,6 +39,14 @@ oxidcommunity_moduleinstaller_packages_update:
     defaults:
         _controller: "OxidCommunityModuleInstallerBundle:Packages:update"
 
+oxidcommunity_moduleinstaller_packages_update_selected:
+    path: /oxid/moduleinstaller/packages/selected/
+    methods: [PUT]
+    options:
+        auth: true
+    defaults:
+        _controller: "OxidCommunityModuleInstallerBundle:Packages:updateSelected"
+
 oxidcommunity_moduleinstaller_packages_delete:
     path: /oxid/moduleinstaller/packages/
     methods: [DELETE]

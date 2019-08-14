@@ -64,10 +64,7 @@ export default {
   data() {
     return {
       // repositories: {},
-      repository_form: {
-        url: "",
-        type: ""
-      },
+      repository_form: {},
       repository_types: [
         { value: "composer", text: "Composer" },
         { value: "vcs", text: "Git (VCS)" },
@@ -108,10 +105,7 @@ export default {
         return valid;
     },
     resetModal() {
-        this.repository_form = {
-            type: '',
-            url: ''
-        };
+        this.repository_form = {};
     },
     handleOk(bvModalEvt) {
         bvModalEvt.preventDefault();

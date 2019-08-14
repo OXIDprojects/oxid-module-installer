@@ -6,6 +6,7 @@ namespace OxidCommunity\ModuleInstaller\Composer;
 
 use Composer\Factory;
 use Composer\IO\NullIO;
+use Composer\Console\Application;
 use Composer\Plugin\CommandEvent;
 use Composer\Plugin\PluginEvents;
 use Composer\Json\JsonFile;
@@ -247,5 +248,22 @@ class ComposerApi
         $onlyName = false;
         $flags = $onlyName ? RepositoryInterface::SEARCH_NAME : RepositoryInterface::SEARCH_FULLTEXT;
         return $repos->search($search, $flags, $type);
+    }
+    
+    public function removePackage($PackageName)
+    {
+
+    }
+    
+    public function updatePackage(Array $Package)
+    {
+        putenv('COMPOSER_HOME=' . $this->getRootPath() . '/vendor/bin/composer');
+
+        // call `composer install` command programmatically
+        $Input = new ArrayInput(array('command' => 'install'));
+        $Input->addArgument('');
+        // $Application = new Application();
+        // $Application->setAutoExit(false); // prevent `$Application->run` method from exitting the script
+        // $Application->run($input);
     }
 }

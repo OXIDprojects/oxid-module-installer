@@ -8,13 +8,13 @@
             class="package-container oxid-packages"
             v-for="(oxid_package) in showStack"
             :key="oxid_package.name"
-            v-bind:class="{ delete: (oxid_package.type === 'delete'), update: (oxid_package.type === 'update') }"
+            v-bind:class="{ delete: (oxid_package.installer.type === 'delete'), update: (oxid_package.installer.type === 'update') }"
         >
             <h4>{{oxid_package.name}}</h4>
             <div>
                 Version: {{oxid_package.version}}
             </div>
-            <button @click="removeFromStack(oxid_package)">Zurücksetzen</button>
+            <button @click="removeFromStack({item: oxid_package, action: 'reset'})">Zurücksetzen</button>
         </div>
     </div>
 </template>
@@ -47,7 +47,7 @@
 </style>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 import { authHeader } from "../../_helpers";
 
 export default {
@@ -55,10 +55,14 @@ export default {
         return {
         };
     },
+    methods: {
+        ...mapActions('packages', [
+            'removeFromStack'
+        ])
+    },
     computed: {
         ...mapGetters('packages', [
-            'showStack',
-            'removeFromStack'
+            'showStack'
         ])
     }
 }

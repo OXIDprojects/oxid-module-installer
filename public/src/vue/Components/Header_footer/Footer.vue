@@ -4,8 +4,8 @@
             <div class="row">
                 <div class="col">Copyright hinweise...</div>
                 <div class="col-lg-4 action">
-                    <button class="btn btn-warning">Pakete aktualisieren</button>
-                    <button class="btn btn-warning">Alles aktualisieren</button>
+                    <button @click="updateSelected" v-if="hasStack" class="btn btn-warning">Pakete aktualisieren</button>
+                    <button @click="updateAll" class="btn btn-warning">Alles aktualisieren</button>
                 </div>
             </div>
         </div>
@@ -13,7 +13,20 @@
 </template>
 
 <script>
-    
+import { mapGetters, mapActions } from 'vuex';
+export default {
+    computed: {
+        ...mapGetters('packages', [
+            'hasStack'
+        ])
+    },
+    methods: {
+        ...mapActions('packages', [
+            'updateAll',
+            'updateSelected'
+        ])
+    }
+}
 </script>
 
 <style>

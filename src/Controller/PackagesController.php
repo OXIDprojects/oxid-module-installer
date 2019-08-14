@@ -47,6 +47,34 @@ class PackagesController extends Controller
         ]);
     }
 
+    public function updateSelectedAction()
+    {
+        $composerApi = new ComposerApi();
+        $Packages = json_decode(file_get_contents('php://input'), true);
+
+        if(empty($Packages)) {
+            return new JsonResponse([
+                'error' => 'No packages selected!'
+            ]);
+        }
+
+        foreach($Packages as $key => $Package) {
+            switch($Package['installer']['type']) {
+                case 'delete':
+                    // $composerApi->removePackage($Package['name']);
+                    $composerApi->updatePackage($Package);
+                break;
+                case 'update':
+                    $composerApi->updatePackage($Package);
+                break;
+            }
+        }
+
+        return new JsonResponse([
+            'status' => 'update selected package'
+        ]);
+    }
+
     public function deleteAction()
     {
         return new JsonResponse([

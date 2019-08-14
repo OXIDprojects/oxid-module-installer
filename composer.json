@@ -44,5 +44,6 @@
             "src/Resources/oxid"
         ]
     },
-    "repositories": []
+    "repositories": {
+    }
 }
