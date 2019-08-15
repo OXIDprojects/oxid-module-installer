@@ -4,10 +4,13 @@ declare (strict_types = 1);
 
 namespace OxidCommunity\ModuleInstaller\Controller;
 
+use Composer\Console\Application;
+use Symfony\Component\Console\Input\ArrayInput;
 use OxidCommunity\ModuleInstaller\Composer\ComposerApi;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Console\Output\BufferedOutput;
 
 
 class PackagesController extends Controller
@@ -61,8 +64,7 @@ class PackagesController extends Controller
         foreach($Packages as $key => $Package) {
             switch($Package['installer']['type']) {
                 case 'delete':
-                    // $composerApi->removePackage($Package['name']);
-                    $composerApi->updatePackage($Package);
+                    $composerApi->removePackage($Package['name']);
                 break;
                 case 'update':
                     $composerApi->updatePackage($Package);
@@ -70,8 +72,18 @@ class PackagesController extends Controller
             }
         }
 
+        $composerApi->setEnv();
+
+        // call `composer update` command programmatically
+        // $Input = new ArrayInput(array('command' => 'update'));
+        // $Application = new Application();
+        // $Application->setAutoExit(false);
+        // $Output = new BufferedOutput();
+        // $Application->run($Input, $Output);
+
         return new JsonResponse([
-            'status' => 'update selected package'
+            'status' => 'update selected package',
+            // 'run' => $Output->fetch()
         ]);
     }
 
