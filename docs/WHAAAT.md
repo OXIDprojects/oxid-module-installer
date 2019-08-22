@@ -52,6 +52,7 @@ Wir benötigen ebenfalls:
 
 - Ein Video-Tutorial, wie man ein einfaches Oxid 4 Modul auf Oxid 6 mit Namespaces und Composer umschreibt
 - Eine Plattform mit Satis, welche mit einem ausgeklügeltem Authentifizierungssystem kommerzielle Module via Composer anbietet
+- Ein Asymmetrisches Kryptosystem damit vor dem Request ein Schlüssel vereinbart werden kann, um den Request über Proxys sicher zu gestalten
 - Den Composer Cloud Resolver, damit leistungsschwache Server ebenfalls Composer nutzen können
 - Geld, Ruhm und Gin
 - Eine Doku
