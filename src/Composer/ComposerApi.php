@@ -49,14 +49,12 @@ class ComposerApi
         return $this->getRootPath() . DIRECTORY_SEPARATOR . 'composer.json';
     }
 
-    public function getComposer()
+    public function getComposer($io = null)
     {
         if (!empty(static::$composer)) {
             return static::$composer;
         }
-        static::$composer = (new Factory())->createComposer(new NullIO(), $this->getRootComposerJson(), false, $this->getRootPath());
-
-        // die("<pre>" . __METHOD__ .":\n" . print_r(static::$composer->getConfig(), true));
+        static::$composer = (new Factory())->createComposer($io ?: new NullIO(), $this->getRootComposerJson(), false, $this->getRootPath());
 
         return static::$composer;
     }
