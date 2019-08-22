@@ -13,7 +13,6 @@
     "extra": {
         "oxid-kernel-plugin": {
             "oxid-community/symfony-security-bundle": "OxidCommunity\\SecurityBundle\\OxidCommunitySecurityBundle",
-            "jwt": "Lexik\\Bundle\\JWTAuthenticationBundle\\LexikJWTAuthenticationBundle",
             "twig": "Symfony\\Bundle\\TwigBundle\\TwigBundle",
             "oxid-community/moduleinstaller": "OxidCommunity\\ModuleInstaller\\OxidCommunityModuleInstallerBundle"
         }
@@ -29,12 +28,11 @@
     },
     "require": {
         "php": ">=7.0",
-        "oxid-community/symfony-kernel": "*",
+        "oxid-community/symfony-kernel": "dev-fix-endles-update",
         "oxid-community/symfony-security-bundle": "*",
         "composer/composer": "^1.9",
         "symfony/twig-bundle": "^3.2",
-        "lexik/jwt-authentication-bundle": "^2.4.4",
-        "symfony/dotenv": "^4.3"
+        "symfony/dotenv": "^v4.3.3"
     },
     "autoload": {
         "psr-4": {
@@ -44,6 +42,10 @@
             "src/Resources/oxid"
         ]
     },
-    "repositories": {
-    }
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/OXIDprojects/oxid-security-bundle"
+        }
+    ]
 }
