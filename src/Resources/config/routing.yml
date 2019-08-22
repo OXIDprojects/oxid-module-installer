@@ -38,6 +38,14 @@ oxidcommunity_moduleinstaller_packages_update:
         auth: true
     defaults:
         _controller: "OxidCommunityModuleInstallerBundle:Packages:update"
+        
+oxidcommunity_moduleinstaller_packages_update_2:
+    path: /oxid/moduleinstaller/packages/update/
+    methods: [GET]
+    options:
+        auth: true
+    defaults:
+        _controller: "OxidCommunityModuleInstallerBundle:Packages:update"
 
 oxidcommunity_moduleinstaller_packages_update_selected:
     path: /oxid/moduleinstaller/packages/selected/
